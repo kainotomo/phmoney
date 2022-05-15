@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Teams;
+namespace Kainotomo\PHMoney\Http\Requests\Teams;
 
 use Illuminate\Foundation\Http\FormRequest;
 
