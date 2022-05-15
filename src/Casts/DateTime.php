@@ -1,6 +1,6 @@
 <?php
 
-namespace Kainotomo\Casts;
+namespace Kainotomo\PHMoney\Casts;
 
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Support\Carbon;

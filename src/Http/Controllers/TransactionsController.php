@@ -1,13 +1,13 @@
 <?php
 
-namespace Kainotomo\Http\Controllers;
+namespace Kainotomo\PHMoney\Http\Controllers;
 
 use App\Http\Requests\SplitRequest;
 use App\Http\Requests\TransactionRequest;
-use Kainotomo\Models\Account;
-use Kainotomo\Models\Base;
-use Kainotomo\Models\Split;
-use Kainotomo\Models\Transaction;
+use Kainotomo\PHMoney\Models\Account;
+use Kainotomo\PHMoney\Models\Base;
+use Kainotomo\PHMoney\Models\Split;
+use Kainotomo\PHMoney\Models\Transaction;
 use App\Rules\SplitsTotal;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;

@@ -1,11 +1,11 @@
 <?php
 
-namespace Kainotomo\Http\Controllers;
+namespace Kainotomo\PHMoney\Http\Controllers;
 
-use Kainotomo\Models\Account;
-use Kainotomo\Models\Book;
-use Kainotomo\Models\Commodity;
-use Kainotomo\Models\Slot;
+use Kainotomo\PHMoney\Models\Account;
+use Kainotomo\PHMoney\Models\Book;
+use Kainotomo\PHMoney\Models\Commodity;
+use Kainotomo\PHMoney\Models\Slot;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;

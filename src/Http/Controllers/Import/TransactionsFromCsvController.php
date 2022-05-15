@@ -1,13 +1,13 @@
 <?php
 
-namespace Kainotomo\Http\Controllers\Import;
+namespace Kainotomo\PHMoney\Http\Controllers\Import;
 
-use Kainotomo\Http\Controllers\Controller;
-use Kainotomo\Models\Account;
-use Kainotomo\Models\Base;
-use Kainotomo\Models\Book;
-use Kainotomo\Models\Split;
-use Kainotomo\Models\Transaction;
+use Kainotomo\PHMoney\Http\Controllers\Controller;
+use Kainotomo\PHMoney\Models\Account;
+use Kainotomo\PHMoney\Models\Base;
+use Kainotomo\PHMoney\Models\Book;
+use Kainotomo\PHMoney\Models\Split;
+use Kainotomo\PHMoney\Models\Transaction;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Kainotomo\Models;
+namespace Kainotomo\PHMoney\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;

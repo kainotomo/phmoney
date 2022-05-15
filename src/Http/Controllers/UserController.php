@@ -1,8 +1,8 @@
 <?php
 
-namespace Kainotomo\Http\Controllers;
+namespace Kainotomo\PHMoney\Http\Controllers;
 
-use Kainotomo\Models\Slot;
+use Kainotomo\PHMoney\Models\Slot;
 use App\Providers\Jetstream\Jetstream;
 use Illuminate\Http\Request;
 

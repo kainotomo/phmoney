@@ -1,17 +1,17 @@
 <?php
 
-namespace Kainotomo\Http\Controllers\Business;
+namespace Kainotomo\PHMoney\Http\Controllers\Business;
 
-use Kainotomo\Http\Controllers\Controller;
+use Kainotomo\PHMoney\Http\Controllers\Controller;
 use App\Http\Requests\VendorRequest;
-use Kainotomo\Models\Account;
-use Kainotomo\Models\Base;
-use Kainotomo\Models\Billterm;
-use Kainotomo\Models\Book;
-use Kainotomo\Models\Commodity;
-use Kainotomo\Models\Slot;
-use Kainotomo\Models\Vendor;
-use Kainotomo\Models\Taxtable;
+use Kainotomo\PHMoney\Models\Account;
+use Kainotomo\PHMoney\Models\Base;
+use Kainotomo\PHMoney\Models\Billterm;
+use Kainotomo\PHMoney\Models\Book;
+use Kainotomo\PHMoney\Models\Commodity;
+use Kainotomo\PHMoney\Models\Slot;
+use Kainotomo\PHMoney\Models\Vendor;
+use Kainotomo\PHMoney\Models\Taxtable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;

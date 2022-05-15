@@ -1,14 +1,14 @@
 <?php
 
-namespace Kainotomo\Http\Controllers\Reports;
+namespace Kainotomo\PHMoney\Http\Controllers\Reports;
 
 use App\Http\Controllers\ReportController;
-use Kainotomo\Models\Commodity;
-use Kainotomo\Models\Customer;
-use Kainotomo\Models\Employee;
-use Kainotomo\Models\Invoice;
-use Kainotomo\Models\Job;
-use Kainotomo\Models\Vendor;
+use Kainotomo\PHMoney\Models\Commodity;
+use Kainotomo\PHMoney\Models\Customer;
+use Kainotomo\PHMoney\Models\Employee;
+use Kainotomo\PHMoney\Models\Invoice;
+use Kainotomo\PHMoney\Models\Job;
+use Kainotomo\PHMoney\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;

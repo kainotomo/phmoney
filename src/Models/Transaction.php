@@ -1,6 +1,6 @@
 <?php
 
-namespace Kainotomo\Models;
+namespace Kainotomo\PHMoney\Models;
 
 use App\Casts\DateTime;
 class Transaction extends Base

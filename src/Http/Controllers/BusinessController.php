@@ -1,6 +1,6 @@
 <?php
 
-namespace Kainotomo\Http\Controllers;
+namespace Kainotomo\PHMoney\Http\Controllers;
 
 use Inertia\Inertia;
 use App\Providers\Jetstream\Jetstream;

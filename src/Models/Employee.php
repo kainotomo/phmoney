@@ -1,6 +1,6 @@
 <?php
 
-namespace Kainotomo\Models;
+namespace Kainotomo\PHMoney\Models;
 
 class Employee extends Base
 {

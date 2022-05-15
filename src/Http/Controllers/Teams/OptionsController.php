@@ -1,14 +1,14 @@
 <?php
 
-namespace Kainotomo\Http\Controllers\Teams;
+namespace Kainotomo\PHMoney\Http\Controllers\Teams;
 
-use Kainotomo\Http\Controllers\Controller;
+use Kainotomo\PHMoney\Http\Controllers\Controller;
 use App\Http\Requests\Teams\DatabaseUploadRequest;
 use App\Http\Requests\Teams\OptionsRequest;
-use Kainotomo\Models\Base;
-use Kainotomo\Models\Book;
-use Kainotomo\Models\Slot;
-use Kainotomo\Models\Taxtable;
+use Kainotomo\PHMoney\Models\Base;
+use Kainotomo\PHMoney\Models\Book;
+use Kainotomo\PHMoney\Models\Slot;
+use Kainotomo\PHMoney\Models\Taxtable;
 use App\Models\Team;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;

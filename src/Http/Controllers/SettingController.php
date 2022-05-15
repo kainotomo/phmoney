@@ -1,6 +1,6 @@
 <?php
 
-namespace Kainotomo\Http\Controllers;
+namespace Kainotomo\PHMoney\Http\Controllers;
 
 use App\Http\Requests\SettingRequest;
 use App\Models\Setting;

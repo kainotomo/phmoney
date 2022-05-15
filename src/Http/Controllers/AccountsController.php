@@ -1,12 +1,12 @@
 <?php
 
-namespace Kainotomo\Http\Controllers;
+namespace Kainotomo\PHMoney\Http\Controllers;
 
-use Kainotomo\Models\Account;
-use Kainotomo\Models\Book;
-use Kainotomo\Models\Commodity;
-use Kainotomo\Models\Split;
-use Kainotomo\Models\Transaction;
+use Kainotomo\PHMoney\Models\Account;
+use Kainotomo\PHMoney\Models\Book;
+use Kainotomo\PHMoney\Models\Commodity;
+use Kainotomo\PHMoney\Models\Split;
+use Kainotomo\PHMoney\Models\Transaction;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;

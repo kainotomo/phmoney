@@ -1,13 +1,13 @@
 <?php
 
-namespace Kainotomo\Http\Controllers\Business;
+namespace Kainotomo\PHMoney\Http\Controllers\Business;
 
-use Kainotomo\Http\Controllers\Controller;
+use Kainotomo\PHMoney\Http\Controllers\Controller;
 use App\Http\Requests\PaymentRequest;
-use Kainotomo\Models\Account;
-use Kainotomo\Models\Base;
-use Kainotomo\Models\Invoice;
-use Kainotomo\Models\Slot;
+use Kainotomo\PHMoney\Models\Account;
+use Kainotomo\PHMoney\Models\Base;
+use Kainotomo\PHMoney\Models\Invoice;
+use Kainotomo\PHMoney\Models\Slot;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

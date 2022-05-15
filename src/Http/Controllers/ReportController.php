@@ -1,10 +1,10 @@
 <?php
 
-namespace Kainotomo\Http\Controllers;
+namespace Kainotomo\PHMoney\Http\Controllers;
 
-use Kainotomo\Models\Account;
-use Kainotomo\Models\Base;
-use Kainotomo\Models\Commodity;
+use Kainotomo\PHMoney\Models\Account;
+use Kainotomo\PHMoney\Models\Base;
+use Kainotomo\PHMoney\Models\Commodity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;

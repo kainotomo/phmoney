@@ -1,13 +1,13 @@
 <?php
 
-namespace Kainotomo\Http\Controllers\Business;
+namespace Kainotomo\PHMoney\Http\Controllers\Business;
 
-use Kainotomo\Http\Controllers\Controller;
+use Kainotomo\PHMoney\Http\Controllers\Controller;
 use App\Http\Requests\EntryRequest;
-use Kainotomo\Models\Account;
-use Kainotomo\Models\Entry;
-use Kainotomo\Models\Invoice;
-use Kainotomo\Models\Taxtable;
+use Kainotomo\PHMoney\Models\Account;
+use Kainotomo\PHMoney\Models\Entry;
+use Kainotomo\PHMoney\Models\Invoice;
+use Kainotomo\PHMoney\Models\Taxtable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Kainotomo\Http\Requests;
+namespace Kainotomo\PHMoney\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

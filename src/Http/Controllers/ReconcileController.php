@@ -1,9 +1,9 @@
 <?php
 
-namespace Kainotomo\Http\Controllers;
+namespace Kainotomo\PHMoney\Http\Controllers;
 
-use Kainotomo\Models\Account;
-use Kainotomo\Models\Split;
+use Kainotomo\PHMoney\Models\Account;
+use Kainotomo\PHMoney\Models\Split;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;

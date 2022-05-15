@@ -1,6 +1,6 @@
 <?php
 
-namespace Kainotomo\Models;
+namespace Kainotomo\PHMoney\Models;
 
 use App\Models\Setting;
 use Illuminate\Support\Carbon;

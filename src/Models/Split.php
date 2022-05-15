@@ -1,6 +1,6 @@
 <?php
 
-namespace Kainotomo\Models;
+namespace Kainotomo\PHMoney\Models;
 
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;

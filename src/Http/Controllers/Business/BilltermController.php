@@ -1,10 +1,10 @@
 <?php
 
-namespace Kainotomo\Http\Controllers\Business;
+namespace Kainotomo\PHMoney\Http\Controllers\Business;
 
-use Kainotomo\Http\Controllers\Controller;
+use Kainotomo\PHMoney\Http\Controllers\Controller;
 use App\Http\Requests\BilltermRequest;
-use Kainotomo\Models\Billterm;
+use Kainotomo\PHMoney\Models\Billterm;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;

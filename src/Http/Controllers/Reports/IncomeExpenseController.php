@@ -1,12 +1,12 @@
 <?php
 
-namespace Kainotomo\Http\Controllers\Reports;
+namespace Kainotomo\PHMoney\Http\Controllers\Reports;
 
 use App\Http\Controllers\ReportController;
-use Kainotomo\Models\Account;
-use Kainotomo\Models\Base;
-use Kainotomo\Models\Commodity;
-use Kainotomo\Models\Split;
+use Kainotomo\PHMoney\Models\Account;
+use Kainotomo\PHMoney\Models\Base;
+use Kainotomo\PHMoney\Models\Commodity;
+use Kainotomo\PHMoney\Models\Split;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;

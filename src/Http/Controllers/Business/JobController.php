@@ -1,15 +1,15 @@
 <?php
 
-namespace Kainotomo\Http\Controllers\Business;
+namespace Kainotomo\PHMoney\Http\Controllers\Business;
 
-use Kainotomo\Http\Controllers\Controller;
+use Kainotomo\PHMoney\Http\Controllers\Controller;
 use App\Http\Requests\JobRequest;
-use Kainotomo\Models\Base;
-use Kainotomo\Models\Book;
-use Kainotomo\Models\Customer;
-use Kainotomo\Models\Job;
-use Kainotomo\Models\Slot;
-use Kainotomo\Models\Vendor;
+use Kainotomo\PHMoney\Models\Base;
+use Kainotomo\PHMoney\Models\Book;
+use Kainotomo\PHMoney\Models\Customer;
+use Kainotomo\PHMoney\Models\Job;
+use Kainotomo\PHMoney\Models\Slot;
+use Kainotomo\PHMoney\Models\Vendor;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
