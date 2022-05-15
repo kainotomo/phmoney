@@ -1,0 +1,52 @@
+{
+    "name": "kainotomo/phmoney",
+    "description": "PHMoney Double-Entry Accounting Program.",
+    "keywords": [
+        "laravel",
+        "accounting",
+        "invoice",
+        "software",
+        "online"
+    ],
+    "license": "GPL-3.0+",
+    "support": {
+        "issues": "https://github.com/kainotomo/phmoney/issues",
+        "source": "https://github.com/kainotomo/phmoney"
+    },
+    "authors": [
+        {
+            "name": "KAINOTOMO PH LTD",
+            "email": "info@kainotomo.com"
+        }
+    ],
+    "require": {
+        "laravel/jetstream": "^2.8"
+    },
+    "require-dev": {},
+    "autoload": {
+        "psr-4": {
+            "Kainotomo\\PHMoney\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\": "stubs/app/",
+            "Database\\Factories\\": "database/factories/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "master"
+        },
+        "laravel": {
+            "providers": [
+                "Kainotomo\\PHMoney\\PHMoneyServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
