@@ -25,7 +25,7 @@ class EmployeeRequest extends FormRequest
     {
         return [
             'addr_name' => ['required', 'string', 'max:255'],
-            'currency' => ['required', 'exists:App\Models\Portfolio\Commodity,guid'],
+            'currency' => ['required', 'exists:Kainotomo\Models\Commodity,guid'],
         ];
     }
 }

@@ -25,9 +25,9 @@ class VendorRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'currency' => ['required', 'exists:App\Models\Portfolio\Commodity,guid'],
-            'terms' => ['nullable', 'exists:App\Models\Portfolio\Billterm,guid'],
-            'taxtable' => ['nullable', 'exists:App\Models\Portfolio\Taxtable,guid'],
+            'currency' => ['required', 'exists:Kainotomo\Models\Commodity,guid'],
+            'terms' => ['nullable', 'exists:Kainotomo\Models\Billterm,guid'],
+            'taxtable' => ['nullable', 'exists:Kainotomo\Models\Taxtable,guid'],
         ];
     }
 }

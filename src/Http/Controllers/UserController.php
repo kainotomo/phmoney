@@ -2,7 +2,7 @@
 
 namespace Kainotomo\Http\Controllers;
 
-use App\Models\Portfolio\Slot;
+use Kainotomo\Models\Slot;
 use App\Providers\Jetstream\Jetstream;
 use Illuminate\Http\Request;
 

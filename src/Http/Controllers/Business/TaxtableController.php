@@ -4,9 +4,9 @@ namespace Kainotomo\Http\Controllers\Business;
 
 use Kainotomo\Http\Controllers\Controller;
 use App\Http\Requests\TaxtableRequest;
-use App\Models\Portfolio\Account;
-use App\Models\Portfolio\Taxtable;
-use App\Models\Portfolio\TaxtableEntry;
+use Kainotomo\Models\Account;
+use Kainotomo\Models\Taxtable;
+use Kainotomo\Models\TaxtableEntry;
 use Illuminate\Http\JsonResponse;
 use Inertia\Inertia;
 use App\Providers\Jetstream\Jetstream;
@@ -62,7 +62,7 @@ class TaxtableController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Portfolio\Taxtable  $taxtable
+     * @param  \Kainotomo\Models\Taxtable  $taxtable
      * @return \Illuminate\Http\Response
      */
     public function show(Taxtable $taxtable)
@@ -73,7 +73,7 @@ class TaxtableController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Portfolio\Taxtable  $taxtable
+     * @param  \Kainotomo\Models\Taxtable  $taxtable
      * @return \Illuminate\Http\Response
      */
     public function edit(Taxtable $taxtable)
@@ -90,7 +90,7 @@ class TaxtableController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\TaxtableRequest  $request
-     * @param  \App\Models\Portfolio\Taxtable  $taxtable
+     * @param  \Kainotomo\Models\Taxtable  $taxtable
      * @return \Illuminate\Http\Response
      */
     public function update(TaxtableRequest $request, Taxtable $taxtable)
@@ -105,7 +105,7 @@ class TaxtableController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Portfolio\Taxtable  $taxtable
+     * @param  \Kainotomo\Models\Taxtable  $taxtable
      * @return \Illuminate\Http\Response
      */
     public function destroy(Taxtable $taxtable)

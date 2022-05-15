@@ -4,12 +4,12 @@ namespace Kainotomo\Http\Controllers\Business;
 
 use Kainotomo\Http\Controllers\Controller;
 use App\Http\Requests\JobRequest;
-use App\Models\Portfolio\Base;
-use App\Models\Portfolio\Book;
-use App\Models\Portfolio\Customer;
-use App\Models\Portfolio\Job;
-use App\Models\Portfolio\Slot;
-use App\Models\Portfolio\Vendor;
+use Kainotomo\Models\Base;
+use Kainotomo\Models\Book;
+use Kainotomo\Models\Customer;
+use Kainotomo\Models\Job;
+use Kainotomo\Models\Slot;
+use Kainotomo\Models\Vendor;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -143,7 +143,7 @@ class JobController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Portfolio\Job  $job
+     * @param  \Kainotomo\Models\Job  $job
      * @return \Illuminate\Http\Response
      */
     public function show(Job $job)
@@ -154,7 +154,7 @@ class JobController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Portfolio\Job  $job
+     * @param  \Kainotomo\Models\Job  $job
      * @return \Illuminate\Http\Response
      */
     public function edit(Job $job)
@@ -171,7 +171,7 @@ class JobController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\JobRequest  $request
-     * @param  \App\Models\Portfolio\Job  $job
+     * @param  \Kainotomo\Models\Job  $job
      * @return \Illuminate\Http\Response
      */
     public function update(JobRequest $request, Job $job)
@@ -201,7 +201,7 @@ class JobController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Portfolio\Job  $job
+     * @param  \Kainotomo\Models\Job  $job
      * @return \Illuminate\Http\Response
      */
     public function destroy(Job $job)

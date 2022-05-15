@@ -4,14 +4,14 @@ namespace Kainotomo\Http\Controllers\Business;
 
 use Kainotomo\Http\Controllers\Controller;
 use App\Http\Requests\VendorRequest;
-use App\Models\Portfolio\Account;
-use App\Models\Portfolio\Base;
-use App\Models\Portfolio\Billterm;
-use App\Models\Portfolio\Book;
-use App\Models\Portfolio\Commodity;
-use App\Models\Portfolio\Slot;
-use App\Models\Portfolio\Vendor;
-use App\Models\Portfolio\Taxtable;
+use Kainotomo\Models\Account;
+use Kainotomo\Models\Base;
+use Kainotomo\Models\Billterm;
+use Kainotomo\Models\Book;
+use Kainotomo\Models\Commodity;
+use Kainotomo\Models\Slot;
+use Kainotomo\Models\Vendor;
+use Kainotomo\Models\Taxtable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -118,7 +118,7 @@ class VendorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Portfolio\Vendor  $vendor
+     * @param  \Kainotomo\Models\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
     public function show(Vendor $vendor)
@@ -129,7 +129,7 @@ class VendorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Portfolio\Vendor  $vendor
+     * @param  \Kainotomo\Models\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
     public function edit(Vendor $vendor)
@@ -159,7 +159,7 @@ class VendorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\VendorRequest  $request
-     * @param  \App\Models\Portfolio\Vendor  $vendor
+     * @param  \Kainotomo\Models\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
     public function update(VendorRequest $request, Vendor $vendor)
@@ -185,7 +185,7 @@ class VendorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Portfolio\Vendor  $vendor
+     * @param  \Kainotomo\Models\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
     public function destroy(Vendor $vendor)

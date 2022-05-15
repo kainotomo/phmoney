@@ -4,10 +4,10 @@ namespace Kainotomo\Http\Controllers\Business;
 
 use Kainotomo\Http\Controllers\Controller;
 use App\Http\Requests\PaymentRequest;
-use App\Models\Portfolio\Account;
-use App\Models\Portfolio\Base;
-use App\Models\Portfolio\Invoice;
-use App\Models\Portfolio\Slot;
+use Kainotomo\Models\Account;
+use Kainotomo\Models\Base;
+use Kainotomo\Models\Invoice;
+use Kainotomo\Models\Slot;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

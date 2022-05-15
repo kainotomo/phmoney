@@ -5,17 +5,17 @@ namespace Kainotomo\Http\Controllers\Business;
 use Kainotomo\Http\Controllers\Controller;
 use App\Http\Requests\InvoicePostRequest;
 use App\Http\Requests\InvoiceRequest;
-use App\Models\Portfolio\Account;
-use App\Models\Portfolio\Base;
-use App\Models\Portfolio\Billterm;
-use App\Models\Portfolio\Book;
-use App\Models\Portfolio\Customer;
-use App\Models\Portfolio\Employee;
-use App\Models\Portfolio\Invoice;
-use App\Models\Portfolio\Job;
-use App\Models\Portfolio\Slot;
-use App\Models\Portfolio\Split;
-use App\Models\Portfolio\Vendor;
+use Kainotomo\Models\Account;
+use Kainotomo\Models\Base;
+use Kainotomo\Models\Billterm;
+use Kainotomo\Models\Book;
+use Kainotomo\Models\Customer;
+use Kainotomo\Models\Employee;
+use Kainotomo\Models\Invoice;
+use Kainotomo\Models\Job;
+use Kainotomo\Models\Slot;
+use Kainotomo\Models\Split;
+use Kainotomo\Models\Vendor;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -235,7 +235,7 @@ class InvoiceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Portfolio\Invoice  $invoice
+     * @param  \Kainotomo\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
     public function show(Invoice $invoice)
@@ -247,7 +247,7 @@ class InvoiceController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Illuminate\Http\Request $request
-     * @param  \App\Models\Portfolio\Invoice  $invoice
+     * @param  \Kainotomo\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request, Invoice $invoice)
@@ -271,7 +271,7 @@ class InvoiceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\InvoiceRequest  $request
-     * @param  \App\Models\Portfolio\Invoice  $invoice
+     * @param  \Kainotomo\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
     public function update(InvoiceRequest $request, Invoice $invoice)
@@ -317,7 +317,7 @@ class InvoiceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Portfolio\Invoice  $invoice
+     * @param  \Kainotomo\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
     public function destroy(Invoice $invoice)
@@ -337,7 +337,7 @@ class InvoiceController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Illuminate\Http\Request $request
-     * @param  \App\Models\Portfolio\Invoice  $invoice
+     * @param  \Kainotomo\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
     public function edit_post(Request $request, Invoice $invoice)
@@ -366,7 +366,7 @@ class InvoiceController extends Controller
      * Post the specified resource in storage.
      *
      * @param  \App\Http\Requests\InvoicePostRequest  $request
-     * @param  \App\Models\Portfolio\Invoice  $invoice
+     * @param  \Kainotomo\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
     public function post(InvoicePostRequest $request, Invoice $invoice)
@@ -554,7 +554,7 @@ class InvoiceController extends Controller
      * Post the specified resource in storage.
      *
      * @param  \App\Http\Requests\Request  $request
-     * @param  \App\Models\Portfolio\Invoice  $invoice
+     * @param  \Kainotomo\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
     public function unpost(Request $request, Invoice $invoice)

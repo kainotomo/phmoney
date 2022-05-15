@@ -25,7 +25,7 @@ class TransactionRequest extends FormRequest
     {
         return [
             'guid' => ['string', 'required', 'max:32'],
-            'currency_guid' => ['required', 'exists:App\Models\Portfolio\Commodity,guid'],
+            'currency_guid' => ['required', 'exists:Kainotomo\Models\Commodity,guid'],
             'num' => ['nullable', 'string', 'max:255'],
             'description' => ['nullable', 'string', 'max:255'],
             'post_date' => ['required', 'date'],

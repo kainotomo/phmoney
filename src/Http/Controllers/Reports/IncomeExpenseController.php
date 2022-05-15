@@ -3,10 +3,10 @@
 namespace Kainotomo\Http\Controllers\Reports;
 
 use App\Http\Controllers\ReportController;
-use App\Models\Portfolio\Account;
-use App\Models\Portfolio\Base;
-use App\Models\Portfolio\Commodity;
-use App\Models\Portfolio\Split;
+use Kainotomo\Models\Account;
+use Kainotomo\Models\Base;
+use Kainotomo\Models\Commodity;
+use Kainotomo\Models\Split;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;

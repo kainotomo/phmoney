@@ -25,8 +25,8 @@ class PaymentRequest extends FormRequest
     {
         return [
             'item_guid' => ['required', 'string', 'max:255'],
-            'transfer_account_guid' => ['required', 'exists:App\Models\Portfolio\Account,guid'],
-            'post_account_guid' => ['required', 'exists:App\Models\Portfolio\Account,guid'],
+            'transfer_account_guid' => ['required', 'exists:Kainotomo\Models\Account,guid'],
+            'post_account_guid' => ['required', 'exists:Kainotomo\Models\Account,guid'],
             'post_date' => ['required', 'date'],
             'credit' => ['required', 'numeric'],
             'debit' => ['required', 'numeric'],

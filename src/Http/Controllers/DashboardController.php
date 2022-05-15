@@ -2,10 +2,10 @@
 
 namespace Kainotomo\Http\Controllers;
 
-use App\Models\Portfolio\Account;
-use App\Models\Portfolio\Book;
-use App\Models\Portfolio\Commodity;
-use App\Models\Portfolio\Slot;
+use Kainotomo\Models\Account;
+use Kainotomo\Models\Book;
+use Kainotomo\Models\Commodity;
+use Kainotomo\Models\Slot;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;

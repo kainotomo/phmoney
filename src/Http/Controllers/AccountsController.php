@@ -2,11 +2,11 @@
 
 namespace Kainotomo\Http\Controllers;
 
-use App\Models\Portfolio\Account;
-use App\Models\Portfolio\Book;
-use App\Models\Portfolio\Commodity;
-use App\Models\Portfolio\Split;
-use App\Models\Portfolio\Transaction;
+use Kainotomo\Models\Account;
+use Kainotomo\Models\Book;
+use Kainotomo\Models\Commodity;
+use Kainotomo\Models\Split;
+use Kainotomo\Models\Transaction;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -82,8 +82,8 @@ class AccountsController extends Controller
             'hidden' => ['boolean'],
             'placeholder' => ['boolean'],
             'account_type' => ['required', 'string', 'max:2048'],
-            'parent_guid' => ['required', 'exists:App\Models\Portfolio\Account,guid'],
-            'commodity_guid' => ['required', 'exists:App\Models\Portfolio\Commodity,guid']
+            'parent_guid' => ['required', 'exists:Kainotomo\Models\Account,guid'],
+            'commodity_guid' => ['required', 'exists:Kainotomo\Models\Commodity,guid']
             ])->validate();
         $validated = array_merge(['non_std_scu' => 0], $validated);
 
@@ -99,7 +99,7 @@ class AccountsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Portfolio\Account  $account
+     * @param  \Kainotomo\Models\Account  $account
      * @return \Inertia\Response
      */
     public function edit(Account $account)
@@ -118,7 +118,7 @@ class AccountsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Portfolio\Account  $account
+     * @param  \Kainotomo\Models\Account  $account
      * @return \Inertia\Response
      */
     public function update(Request $request, Account $account)
@@ -131,8 +131,8 @@ class AccountsController extends Controller
             'hidden' => ['boolean'],
             'placeholder' => ['boolean'],
             'account_type' => ['required', 'string', 'max:2048'],
-            'parent_guid' => ['required', 'exists:App\Models\Portfolio\Account,guid'],
-            'commodity_guid' => ['required', 'exists:App\Models\Portfolio\Commodity,guid']
+            'parent_guid' => ['required', 'exists:Kainotomo\Models\Account,guid'],
+            'commodity_guid' => ['required', 'exists:Kainotomo\Models\Commodity,guid']
             ])->validate();
 
         $account->update($validated);

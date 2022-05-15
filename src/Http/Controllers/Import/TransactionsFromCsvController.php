@@ -3,11 +3,11 @@
 namespace Kainotomo\Http\Controllers\Import;
 
 use Kainotomo\Http\Controllers\Controller;
-use App\Models\Portfolio\Account;
-use App\Models\Portfolio\Base;
-use App\Models\Portfolio\Book;
-use App\Models\Portfolio\Split;
-use App\Models\Portfolio\Transaction;
+use Kainotomo\Models\Account;
+use Kainotomo\Models\Base;
+use Kainotomo\Models\Book;
+use Kainotomo\Models\Split;
+use Kainotomo\Models\Transaction;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;

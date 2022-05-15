@@ -4,7 +4,7 @@ namespace Kainotomo\Http\Controllers\Business;
 
 use Kainotomo\Http\Controllers\Controller;
 use App\Http\Requests\BilltermRequest;
-use App\Models\Portfolio\Billterm;
+use Kainotomo\Models\Billterm;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -57,7 +57,7 @@ class BilltermController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Portfolio\Billterm  $billterm
+     * @param  \Kainotomo\Models\Billterm  $billterm
      * @return \Illuminate\Http\Response
      */
     public function show(Billterm $billterm)
@@ -68,7 +68,7 @@ class BilltermController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Portfolio\Billterm  $billterm
+     * @param  \Kainotomo\Models\Billterm  $billterm
      * @return \Illuminate\Http\Response
      */
     public function edit(Billterm $billterm)
@@ -96,7 +96,7 @@ class BilltermController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\BilltermRequest  $request
-     * @param  \App\Models\Portfolio\Billterm  $billterm
+     * @param  \Kainotomo\Models\Billterm  $billterm
      * @return \Illuminate\Http\Response
      */
     public function update(BilltermRequest $request, Billterm $billterm)
@@ -111,7 +111,7 @@ class BilltermController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Portfolio\Billterm  $billterm
+     * @param  \Kainotomo\Models\Billterm  $billterm
      * @return \Illuminate\Http\Response
      */
     public function destroy(Billterm $billterm)

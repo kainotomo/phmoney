@@ -25,7 +25,7 @@ class SplitRequest extends FormRequest
     {
         return [
             'guid' => ['string', 'required', 'max:32'],
-            'account_guid' => ['required', 'exists:App\Models\Portfolio\Account,guid'],
+            'account_guid' => ['required', 'exists:Kainotomo\Models\Account,guid'],
             'memo' => ['string', 'max:2048', 'nullable'],
             'action' => ['string', 'max:2048', 'nullable'],
             'reconcile_state' => ['string', 'max:1'],
@@ -35,7 +35,7 @@ class SplitRequest extends FormRequest
             'quantity_denom' => ['integer', 'required'],
             //'debit' => ['numeric', Rule::requiredIf(is_null($request->credit)), 'nullable'],
             //'credit' => ['numeric', Rule::requiredIf(is_null($request->debit)), 'nullable'],
-            'lot_guid' => ['nullable', 'exists:App\Models\Portfolio\Lot,guid'],
+            'lot_guid' => ['nullable', 'exists:Kainotomo\Models\Lot,guid'],
         ];
     }
 }

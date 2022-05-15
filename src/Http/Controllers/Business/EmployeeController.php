@@ -4,14 +4,14 @@ namespace Kainotomo\Http\Controllers\Business;
 
 use Kainotomo\Http\Controllers\Controller;
 use App\Http\Requests\EmployeeRequest;
-use App\Models\Portfolio\Account;
-use App\Models\Portfolio\Base;
-use App\Models\Portfolio\Billterm;
-use App\Models\Portfolio\Book;
-use App\Models\Portfolio\Commodity;
-use App\Models\Portfolio\Employee;
-use App\Models\Portfolio\Slot;
-use App\Models\Portfolio\Taxtable;
+use Kainotomo\Models\Account;
+use Kainotomo\Models\Base;
+use Kainotomo\Models\Billterm;
+use Kainotomo\Models\Book;
+use Kainotomo\Models\Commodity;
+use Kainotomo\Models\Employee;
+use Kainotomo\Models\Slot;
+use Kainotomo\Models\Taxtable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -118,7 +118,7 @@ class EmployeeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Portfolio\Employee  $employee
+     * @param  \Kainotomo\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
     public function show(Employee $employee)
@@ -129,7 +129,7 @@ class EmployeeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Portfolio\Employee  $employee
+     * @param  \Kainotomo\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
     public function edit(Employee $employee)
@@ -145,7 +145,7 @@ class EmployeeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\EmployeeRequest  $request
-     * @param  \App\Models\Portfolio\Employee  $employee
+     * @param  \Kainotomo\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
     public function update(EmployeeRequest $request, Employee $employee)
@@ -171,7 +171,7 @@ class EmployeeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Portfolio\Employee  $employee
+     * @param  \Kainotomo\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
     public function destroy(Employee $employee)

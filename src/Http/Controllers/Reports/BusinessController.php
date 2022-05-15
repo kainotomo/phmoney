@@ -3,12 +3,12 @@
 namespace Kainotomo\Http\Controllers\Reports;
 
 use App\Http\Controllers\ReportController;
-use App\Models\Portfolio\Commodity;
-use App\Models\Portfolio\Customer;
-use App\Models\Portfolio\Employee;
-use App\Models\Portfolio\Invoice;
-use App\Models\Portfolio\Job;
-use App\Models\Portfolio\Vendor;
+use Kainotomo\Models\Commodity;
+use Kainotomo\Models\Customer;
+use Kainotomo\Models\Employee;
+use Kainotomo\Models\Invoice;
+use Kainotomo\Models\Job;
+use Kainotomo\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;

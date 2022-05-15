@@ -4,12 +4,12 @@ namespace Kainotomo\Http\Controllers\Business;
 
 use Kainotomo\Http\Controllers\Controller;
 use App\Http\Requests\CustomerRequest;
-use App\Models\Portfolio\Account;
-use App\Models\Portfolio\Billterm;
-use App\Models\Portfolio\Book;
-use App\Models\Portfolio\Commodity;
-use App\Models\Portfolio\Customer;
-use App\Models\Portfolio\Taxtable;
+use Kainotomo\Models\Account;
+use Kainotomo\Models\Billterm;
+use Kainotomo\Models\Book;
+use Kainotomo\Models\Commodity;
+use Kainotomo\Models\Customer;
+use Kainotomo\Models\Taxtable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -83,7 +83,7 @@ class CustomerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Portfolio\Customer  $customer
+     * @param  \Kainotomo\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
     public function show(Customer $customer)
@@ -94,7 +94,7 @@ class CustomerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Portfolio\Customer  $customer
+     * @param  \Kainotomo\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
     public function edit(Customer $customer)
@@ -124,7 +124,7 @@ class CustomerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\CustomerRequest  $request
-     * @param  \App\Models\Portfolio\Customer  $customer
+     * @param  \Kainotomo\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
     public function update(CustomerRequest $request, Customer $customer)
@@ -139,7 +139,7 @@ class CustomerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Portfolio\Customer  $customer
+     * @param  \Kainotomo\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
     public function destroy(Customer $customer)
