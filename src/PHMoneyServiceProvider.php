@@ -27,9 +27,9 @@ class PHMoneyServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'phmoney');
 
         Route::group([
-            'namespace' => 'Laravel\Jetstream\Http\Controllers',
             'domain' => config('jetstream.domain', null),
             'prefix' => config('jetstream.prefix', config('jetstream.path')),
+            'middleware' => ['auth:sanctum', config('jetstream.auth_session'), 'verified']
         ], function () {
             $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
         });
