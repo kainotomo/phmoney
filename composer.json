@@ -34,9 +34,6 @@
         }
     },
     "extra": {
-        "branch-alias": {
-            "dev-master": "master"
-        },
         "laravel": {
             "providers": [
                 "Kainotomo\\PHMoney\\PHMoneyServiceProvider"
