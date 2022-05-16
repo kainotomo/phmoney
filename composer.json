@@ -36,7 +36,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Kainotomo\\PHMoney\\PHMoneyServiceProvider"
+                "Kainotomo\\PHMoney\\Providers\\PHMoneyServiceProvider"
             ]
         }
     },
