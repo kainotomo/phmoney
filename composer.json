@@ -30,8 +30,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\": "stubs/app/",
-            "Database\\Factories\\": "database/factories/"
+            "App\\": "stubs/app/"
         }
     },
     "extra": {
