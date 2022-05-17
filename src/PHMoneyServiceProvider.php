@@ -15,7 +15,7 @@ class PHMoneyServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(__DIR__.'/../config/phmoney.php', 'phmoney');
-        $this->mergeConfigFrom(__DIR__.'/../config/database.php', 'database');
+        $this->mergeConfigFrom(__DIR__.'/../config/database.php', 'database.connections');
     }
 
     /**
