@@ -82,8 +82,8 @@ class AccountsController extends Controller
             'hidden' => ['boolean'],
             'placeholder' => ['boolean'],
             'account_type' => ['required', 'string', 'max:2048'],
-            'parent_guid' => ['required', 'exists:Kainotomo\Models\Account,guid'],
-            'commodity_guid' => ['required', 'exists:Kainotomo\Models\Commodity,guid']
+            'parent_guid' => ['required', 'exists:Kainotomo\PHMoney\Models\Account,guid'],
+            'commodity_guid' => ['required', 'exists:Kainotomo\PHMoney\Models\Commodity,guid']
             ])->validate();
         $validated = array_merge(['non_std_scu' => 0], $validated);
 
@@ -97,7 +97,7 @@ class AccountsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \Kainotomo\Models\Account  $account
+     * @param  \Kainotomo\PHMoney\Models\Account  $account
      * @return \Inertia\Response
      */
     public function edit(Account $account)
@@ -116,7 +116,7 @@ class AccountsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Kainotomo\Models\Account  $account
+     * @param  \Kainotomo\PHMoney\Models\Account  $account
      * @return \Inertia\Response
      */
     public function update(Request $request, Account $account)
@@ -129,8 +129,8 @@ class AccountsController extends Controller
             'hidden' => ['boolean'],
             'placeholder' => ['boolean'],
             'account_type' => ['required', 'string', 'max:2048'],
-            'parent_guid' => ['required', 'exists:Kainotomo\Models\Account,guid'],
-            'commodity_guid' => ['required', 'exists:Kainotomo\Models\Commodity,guid']
+            'parent_guid' => ['required', 'exists:Kainotomo\PHMoney\Models\Account,guid'],
+            'commodity_guid' => ['required', 'exists:Kainotomo\PHMoney\Models\Commodity,guid']
             ])->validate();
 
         $account->update($validated);

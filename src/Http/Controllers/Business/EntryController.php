@@ -19,7 +19,7 @@ class EntryController extends Controller
      * Display a listing of the resource.
      *
      * @param Illuminate\Http\Request $request
-     * @param Kainotomo\Models\Invoice $invoice
+     * @param Kainotomo\PHMoney\Models\Invoice $invoice
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request, Invoice $invoice)
@@ -66,7 +66,7 @@ class EntryController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @param Kainotomo\Models\Invoice $invoice
+     * @param Kainotomo\PHMoney\Models\Invoice $invoice
      * @return \Illuminate\Http\Response
      */
     public function create(Invoice $invoice)
@@ -138,7 +138,7 @@ class EntryController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\EntryRequest  $request
-     * @param Kainotomo\Models\Invoice $invoice
+     * @param Kainotomo\PHMoney\Models\Invoice $invoice
      * @return \Illuminate\Http\Response
      */
     public function store(EntryRequest $request, Invoice $invoice)
@@ -159,8 +159,8 @@ class EntryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Kainotomo\Models\Invoice $invoice
-     * @param  \Kainotomo\Models\Entry  $entry
+     * @param Kainotomo\PHMoney\Models\Invoice $invoice
+     * @param  \Kainotomo\PHMoney\Models\Entry  $entry
      * @return \Illuminate\Http\Response
      */
     public function show(Invoice $invoice, Entry $entry)
@@ -171,8 +171,8 @@ class EntryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Kainotomo\Models\Invoice $invoice
-     * @param  \Kainotomo\Models\Entry  $entry
+     * @param Kainotomo\PHMoney\Models\Invoice $invoice
+     * @param  \Kainotomo\PHMoney\Models\Entry  $entry
      * @return \Illuminate\Http\Response
      */
     public function edit(Invoice $invoice, Entry $entry)
@@ -222,8 +222,8 @@ class EntryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\EntryRequest  $request
-     * @param Kainotomo\Models\Invoice $invoice
-     * @param  \Kainotomo\Models\Entry  $entry
+     * @param Kainotomo\PHMoney\Models\Invoice $invoice
+     * @param  \Kainotomo\PHMoney\Models\Entry  $entry
      * @return \Illuminate\Http\Response
      */
     public function update(EntryRequest $request, Invoice $invoice, Entry $entry)
@@ -238,8 +238,8 @@ class EntryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Kainotomo\Models\Invoice $invoice
-     * @param  \Kainotomo\Models\Entry  $entry
+     * @param Kainotomo\PHMoney\Models\Invoice $invoice
+     * @param  \Kainotomo\PHMoney\Models\Entry  $entry
      * @return \Illuminate\Http\Response
      */
     public function destroy(Invoice $invoice, Entry $entry)

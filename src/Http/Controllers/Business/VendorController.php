@@ -118,7 +118,7 @@ class VendorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \Kainotomo\Models\Vendor  $vendor
+     * @param  \Kainotomo\PHMoney\Models\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
     public function show(Vendor $vendor)
@@ -129,7 +129,7 @@ class VendorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \Kainotomo\Models\Vendor  $vendor
+     * @param  \Kainotomo\PHMoney\Models\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
     public function edit(Vendor $vendor)
@@ -159,7 +159,7 @@ class VendorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\VendorRequest  $request
-     * @param  \Kainotomo\Models\Vendor  $vendor
+     * @param  \Kainotomo\PHMoney\Models\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
     public function update(VendorRequest $request, Vendor $vendor)
@@ -185,7 +185,7 @@ class VendorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Kainotomo\Models\Vendor  $vendor
+     * @param  \Kainotomo\PHMoney\Models\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
     public function destroy(Vendor $vendor)

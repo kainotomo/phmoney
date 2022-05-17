@@ -20,7 +20,7 @@ class TransactionsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param \Kainotomo\Models\Account $account
+     * @param \Kainotomo\PHMoney\Models\Account $account
      * @return \Inertia\Response
      */
     public function index(Request $request, Account $account)
@@ -40,7 +40,7 @@ class TransactionsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @param \Kainotomo\Models\Account $account
+     * @param \Kainotomo\PHMoney\Models\Account $account
      * @return \Inertia\Response
      */
     public function create(Account $account)
@@ -145,7 +145,7 @@ class TransactionsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Kainotomo\Models\Account $account
+     * @param \Kainotomo\PHMoney\Models\Account $account
      * @param  \App\Http\Requests\SettingRequest  $request
      * @return \Illuminate\Http\Response
      */
@@ -178,8 +178,8 @@ class TransactionsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @param \Kainotomo\Models\Account $account
-     * @param \Kainotomo\Models\Transaction $transaction
+     * @param \Kainotomo\PHMoney\Models\Account $account
+     * @param \Kainotomo\PHMoney\Models\Transaction $transaction
      * @return \Inertia\Response
      */
     public function edit(Account $account, Transaction $transaction)
@@ -224,8 +224,8 @@ class TransactionsController extends Controller
     /**
      * Duplicate a resource.
      *
-     * @param \Kainotomo\Models\Account $account
-     * @param \Kainotomo\Models\Transaction $transaction
+     * @param \Kainotomo\PHMoney\Models\Account $account
+     * @param \Kainotomo\PHMoney\Models\Transaction $transaction
      * @return \Inertia\Response
      */
     public function duplicate(Account $account, Transaction $transaction)
@@ -257,8 +257,8 @@ class TransactionsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  App\Http\Requests\TransactionRequest  $request
-     * @param \Kainotomo\Models\Account $account
-     * @param \Kainotomo\Models\Transaction $transaction
+     * @param \Kainotomo\PHMoney\Models\Account $account
+     * @param \Kainotomo\PHMoney\Models\Transaction $transaction
      * @return \Inertia\Response
      */
     public function update(TransactionRequest $request, Account $account, Transaction $transaction)
@@ -297,8 +297,8 @@ class TransactionsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \Kainotomo\Models\Account $account
-     * @param \Kainotomo\Models\Transaction $transaction
+     * @param \Kainotomo\PHMoney\Models\Account $account
+     * @param \Kainotomo\PHMoney\Models\Transaction $transaction
      * @return \Inertia\Response
      */
     public function destroy(Account $account, Transaction $transaction)

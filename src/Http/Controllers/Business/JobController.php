@@ -143,7 +143,7 @@ class JobController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \Kainotomo\Models\Job  $job
+     * @param  \Kainotomo\PHMoney\Models\Job  $job
      * @return \Illuminate\Http\Response
      */
     public function show(Job $job)
@@ -154,7 +154,7 @@ class JobController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \Kainotomo\Models\Job  $job
+     * @param  \Kainotomo\PHMoney\Models\Job  $job
      * @return \Illuminate\Http\Response
      */
     public function edit(Job $job)
@@ -171,7 +171,7 @@ class JobController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\JobRequest  $request
-     * @param  \Kainotomo\Models\Job  $job
+     * @param  \Kainotomo\PHMoney\Models\Job  $job
      * @return \Illuminate\Http\Response
      */
     public function update(JobRequest $request, Job $job)
@@ -201,7 +201,7 @@ class JobController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Kainotomo\Models\Job  $job
+     * @param  \Kainotomo\PHMoney\Models\Job  $job
      * @return \Illuminate\Http\Response
      */
     public function destroy(Job $job)

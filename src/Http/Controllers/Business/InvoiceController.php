@@ -235,7 +235,7 @@ class InvoiceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \Kainotomo\Models\Invoice  $invoice
+     * @param  \Kainotomo\PHMoney\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
     public function show(Invoice $invoice)
@@ -247,7 +247,7 @@ class InvoiceController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Illuminate\Http\Request $request
-     * @param  \Kainotomo\Models\Invoice  $invoice
+     * @param  \Kainotomo\PHMoney\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request, Invoice $invoice)
@@ -271,7 +271,7 @@ class InvoiceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\InvoiceRequest  $request
-     * @param  \Kainotomo\Models\Invoice  $invoice
+     * @param  \Kainotomo\PHMoney\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
     public function update(InvoiceRequest $request, Invoice $invoice)
@@ -317,7 +317,7 @@ class InvoiceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Kainotomo\Models\Invoice  $invoice
+     * @param  \Kainotomo\PHMoney\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
     public function destroy(Invoice $invoice)
@@ -337,7 +337,7 @@ class InvoiceController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Illuminate\Http\Request $request
-     * @param  \Kainotomo\Models\Invoice  $invoice
+     * @param  \Kainotomo\PHMoney\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
     public function edit_post(Request $request, Invoice $invoice)
@@ -366,7 +366,7 @@ class InvoiceController extends Controller
      * Post the specified resource in storage.
      *
      * @param  \App\Http\Requests\InvoicePostRequest  $request
-     * @param  \Kainotomo\Models\Invoice  $invoice
+     * @param  \Kainotomo\PHMoney\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
     public function post(InvoicePostRequest $request, Invoice $invoice)
@@ -554,7 +554,7 @@ class InvoiceController extends Controller
      * Post the specified resource in storage.
      *
      * @param  \App\Http\Requests\Request  $request
-     * @param  \Kainotomo\Models\Invoice  $invoice
+     * @param  \Kainotomo\PHMoney\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
     public function unpost(Request $request, Invoice $invoice)

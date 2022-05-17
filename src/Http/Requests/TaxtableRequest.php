@@ -25,7 +25,7 @@ class TaxtableRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'taxtableentry.account' => ['required', 'exists:Kainotomo\Models\Account,guid'],
+            'taxtableentry.account' => ['required', 'exists:Kainotomo\PHMoney\Models\Account,guid'],
             'taxtableentry.amount_num' => ['required', 'integer'],
             'taxtableentry.amount_denom' => ['required', 'integer'],
             'taxtableentry.type' => ['required', 'integer'],

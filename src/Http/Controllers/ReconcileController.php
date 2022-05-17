@@ -18,7 +18,7 @@ class ReconcileController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param \Illuminate\Http\Request $request
-     * @param  \Kainotomo\Models\Account  $account
+     * @param  \Kainotomo\PHMoney\Models\Account  $account
      * @return \Inertia\Response
      */
     public function index(Request $request, Account $account)
@@ -62,7 +62,7 @@ class ReconcileController extends Controller
      * Save transactions
      *
      * @param \Illuminate\Http\Request $request
-     * @param  \Kainotomo\Models\Account  $account
+     * @param  \Kainotomo\PHMoney\Models\Account  $account
      * @return \Inertia\Response
      */
     public function update(Request $request, Account $account)

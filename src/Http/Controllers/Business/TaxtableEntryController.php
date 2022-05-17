@@ -17,7 +17,7 @@ class TaxtableEntryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param Kainotomo\Models\Taxtable $taxtable
+     * @param Kainotomo\PHMoney\Models\Taxtable $taxtable
      * @return \Illuminate\Http\Response
      */
     public function index(Taxtable $taxtable)
@@ -33,7 +33,7 @@ class TaxtableEntryController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @param Kainotomo\Models\Taxtable $taxtable
+     * @param Kainotomo\PHMoney\Models\Taxtable $taxtable
      * @return \Illuminate\Http\Response
      */
     public function create(Taxtable $taxtable)
@@ -50,7 +50,7 @@ class TaxtableEntryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Kainotomo\Models\Taxtable $taxtable
+     * @param Kainotomo\PHMoney\Models\Taxtable $taxtable
      * @param  \App\Http\Requests\TaxtableEntryRequest  $request
      * @return \Illuminate\Http\Response
      */
@@ -65,8 +65,8 @@ class TaxtableEntryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \Kainotomo\Models\TaxtableEntry  $taxtableentry
-     * @param Kainotomo\Models\Taxtable $taxtable
+     * @param  \Kainotomo\PHMoney\Models\TaxtableEntry  $taxtableentry
+     * @param Kainotomo\PHMoney\Models\Taxtable $taxtable
      * @return \Illuminate\Http\Response
      */
     public function show(TaxtableEntry $taxtableentry, Taxtable $taxtable)
@@ -77,8 +77,8 @@ class TaxtableEntryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Kainotomo\Models\Taxtable $taxtable
-     * @param  \Kainotomo\Models\TaxtableEntry  $taxtableentry
+     * @param Kainotomo\PHMoney\Models\Taxtable $taxtable
+     * @param  \Kainotomo\PHMoney\Models\TaxtableEntry  $taxtableentry
      * @return \Illuminate\Http\Response
      */
     public function edit(Taxtable $taxtable, TaxtableEntry $taxtableentry )
@@ -108,8 +108,8 @@ class TaxtableEntryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\TaxtableEntryRequest  $request
-     * @param  \Kainotomo\Models\Taxtable  $taxtable
-     * @param  \Kainotomo\Models\TaxtableEntry  $taxtableentry
+     * @param  \Kainotomo\PHMoney\Models\Taxtable  $taxtable
+     * @param  \Kainotomo\PHMoney\Models\TaxtableEntry  $taxtableentry
      * @return \Illuminate\Http\Response
      */
     public function update(TaxtableEntryRequest $request, Taxtable $taxtable, TaxtableEntry $taxtableentry)
@@ -124,8 +124,8 @@ class TaxtableEntryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Kainotomo\Models\Taxtable  $taxtable
-     * @param  \Kainotomo\Models\TaxtableEntry  $taxtableentry
+     * @param  \Kainotomo\PHMoney\Models\Taxtable  $taxtable
+     * @param  \Kainotomo\PHMoney\Models\TaxtableEntry  $taxtableentry
      * @return \Illuminate\Http\Response
      */
     public function destroy(Taxtable $taxtable, TaxtableEntry $taxtableentry)

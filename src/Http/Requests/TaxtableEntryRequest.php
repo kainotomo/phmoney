@@ -24,8 +24,8 @@ class TaxtableEntryRequest extends FormRequest
     public function rules()
     {
         return [
-            'taxtable' => ['required', 'exists:Kainotomo\Models\Taxtable,guid'],
-            'account' => ['required', 'exists:Kainotomo\Models\Account,guid'],
+            'taxtable' => ['required', 'exists:Kainotomo\PHMoney\Models\Taxtable,guid'],
+            'account' => ['required', 'exists:Kainotomo\PHMoney\Models\Account,guid'],
             'amount_num' => ['required', 'integer'],
             'amount_denom' => ['required', 'integer'],
             'type' => ['required', 'integer'],

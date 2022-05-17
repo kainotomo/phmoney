@@ -25,9 +25,9 @@ class CustomerRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'currency' => ['required', 'exists:Kainotomo\Models\Commodity,guid'],
-            'terms' => ['nullable', 'exists:Kainotomo\Models\Billterm,guid'],
-            'taxtable' => ['nullable', 'exists:Kainotomo\Models\Taxtable,guid'],
+            'currency' => ['required', 'exists:Kainotomo\PHMoney\Models\Commodity,guid'],
+            'terms' => ['nullable', 'exists:Kainotomo\PHMoney\Models\Billterm,guid'],
+            'taxtable' => ['nullable', 'exists:Kainotomo\PHMoney\Models\Taxtable,guid'],
             'discount_num' => ['required', 'integer'],
             'credit_num' => ['required', 'integer'],
         ];

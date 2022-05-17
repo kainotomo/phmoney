@@ -27,7 +27,7 @@ class InvoicePostRequest extends FormRequest
             'date_posted' => ['required', 'date'],
             'date_due' => ['required', 'date'],
             'description' => ['nullable', 'string', 'max:255'],
-            'account_guid' => ['required', 'exists:Kainotomo\Models\Account,guid'],
+            'account_guid' => ['required', 'exists:Kainotomo\PHMoney\Models\Account,guid'],
             'accumulate' => ['required', 'boolean'],
         ];
     }

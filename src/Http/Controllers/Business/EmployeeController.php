@@ -118,7 +118,7 @@ class EmployeeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \Kainotomo\Models\Employee  $employee
+     * @param  \Kainotomo\PHMoney\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
     public function show(Employee $employee)
@@ -129,7 +129,7 @@ class EmployeeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \Kainotomo\Models\Employee  $employee
+     * @param  \Kainotomo\PHMoney\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
     public function edit(Employee $employee)
@@ -145,7 +145,7 @@ class EmployeeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\EmployeeRequest  $request
-     * @param  \Kainotomo\Models\Employee  $employee
+     * @param  \Kainotomo\PHMoney\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
     public function update(EmployeeRequest $request, Employee $employee)
@@ -171,7 +171,7 @@ class EmployeeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Kainotomo\Models\Employee  $employee
+     * @param  \Kainotomo\PHMoney\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
     public function destroy(Employee $employee)

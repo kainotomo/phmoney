@@ -62,7 +62,7 @@ class TaxtableController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \Kainotomo\Models\Taxtable  $taxtable
+     * @param  \Kainotomo\PHMoney\Models\Taxtable  $taxtable
      * @return \Illuminate\Http\Response
      */
     public function show(Taxtable $taxtable)
@@ -73,7 +73,7 @@ class TaxtableController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \Kainotomo\Models\Taxtable  $taxtable
+     * @param  \Kainotomo\PHMoney\Models\Taxtable  $taxtable
      * @return \Illuminate\Http\Response
      */
     public function edit(Taxtable $taxtable)
@@ -90,7 +90,7 @@ class TaxtableController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\TaxtableRequest  $request
-     * @param  \Kainotomo\Models\Taxtable  $taxtable
+     * @param  \Kainotomo\PHMoney\Models\Taxtable  $taxtable
      * @return \Illuminate\Http\Response
      */
     public function update(TaxtableRequest $request, Taxtable $taxtable)
@@ -105,7 +105,7 @@ class TaxtableController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Kainotomo\Models\Taxtable  $taxtable
+     * @param  \Kainotomo\PHMoney\Models\Taxtable  $taxtable
      * @return \Illuminate\Http\Response
      */
     public function destroy(Taxtable $taxtable)

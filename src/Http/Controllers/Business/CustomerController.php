@@ -83,7 +83,7 @@ class CustomerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \Kainotomo\Models\Customer  $customer
+     * @param  \Kainotomo\PHMoney\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
     public function show(Customer $customer)
@@ -94,7 +94,7 @@ class CustomerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \Kainotomo\Models\Customer  $customer
+     * @param  \Kainotomo\PHMoney\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
     public function edit(Customer $customer)
@@ -124,7 +124,7 @@ class CustomerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\CustomerRequest  $request
-     * @param  \Kainotomo\Models\Customer  $customer
+     * @param  \Kainotomo\PHMoney\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
     public function update(CustomerRequest $request, Customer $customer)
@@ -139,7 +139,7 @@ class CustomerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Kainotomo\Models\Customer  $customer
+     * @param  \Kainotomo\PHMoney\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
     public function destroy(Customer $customer)

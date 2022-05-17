@@ -25,7 +25,7 @@ class InvoiceRequest extends FormRequest
     {
         return [
             'date_opened' => ['required', 'date'],
-            'terms' => ['nullable', 'exists:Kainotomo\Models\Billterm,guid'],
+            'terms' => ['nullable', 'exists:Kainotomo\PHMoney\Models\Billterm,guid'],
             'owner_guid' => ['required', 'string'],
         ];
     }
