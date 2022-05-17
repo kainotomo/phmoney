@@ -1,16 +1,9 @@
 <?php
-$manifestJson = file_get_contents('http://phmoneyvue/manifest.json');
+$manifestJson = file_get_contents('https://kainotomo.github.io/phmoney_assets/dist/manifest.json');
 $manifest = json_decode($manifestJson, true);
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
     <!-- Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 
@@ -23,8 +16,8 @@ $manifest = json_decode($manifestJson, true);
     <!-- Google Captcha -->
     <script src="https://www.google.com/recaptcha/api.js"></script>
 
-    <script type="module" crossorigin src="http://phmoneyvue.kainotomo.localhost/{{ $manifest['src/main.ts']['file'] }}"></script>
-    <link rel="stylesheet" href="http://phmoneyvue.kainotomo.localhost/{{ $manifest['src/main.ts']['css'][0] }}" />
+    <script type="module" crossorigin src="https://kainotomo.github.io/phmoney_assets/dist/{{ $manifest['src/main.ts']['file'] }}"></script>
+    <link rel="stylesheet" href="https://kainotomo.github.io/phmoney_assets/dist/{{ $manifest['src/main.ts']['css'][0] }}" />
   </head>
   <body>
     <div id="app_gnucash_component"></div>
