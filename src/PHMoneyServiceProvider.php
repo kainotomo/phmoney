@@ -29,7 +29,7 @@ class PHMoneyServiceProvider extends ServiceProvider
         Route::group([
             'domain' => config('jetstream.domain', null),
             'prefix' => config('jetstream.prefix', config('jetstream.path')),
-            'middleware' => ['auth:sanctum', config('jetstream.auth_session'), 'verified']
+            ['middleware' => config('jetstream.middleware', ['web'])]
         ], function () {
             $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
         });
