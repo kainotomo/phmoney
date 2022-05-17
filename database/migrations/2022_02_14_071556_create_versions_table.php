@@ -15,7 +15,7 @@ class CreateVersionsTable extends Migration
     {
         Schema::create('versions', function (Blueprint $table) {
             $table->id('pk');
-            $table->foreignIdFor(App\Models\Team::class)->index();
+            $table->foreignIdFor(config('phmoney.foreign_id_model'), 'team_id')->index();
             $table->string('table_name', 50)->index();
             $table->integer('table_version');
         });

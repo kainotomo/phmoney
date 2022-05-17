@@ -15,7 +15,7 @@ class CreatePricesTable extends Migration
     {
         Schema::create('prices', function (Blueprint $table) {
             $table->id('pk');
-            $table->foreignIdFor(App\Models\Team::class)->index();
+            $table->foreignIdFor(config('phmoney.foreign_id_model'), 'team_id')->index();
             $table->uuid('guid')->index();
             $table->uuid('commodity_guid');
             $table->uuid('currency_guid');

@@ -15,7 +15,7 @@ class CreateRecurrencesTable extends Migration
     {
         Schema::create('recurrences', function (Blueprint $table) {
             $table->id('pk');
-            $table->foreignIdFor(App\Models\Team::class)->index();
+            $table->foreignIdFor(config('phmoney.foreign_id_model'), 'team_id')->index();
             $table->uuid('obj_guid');
             $table->integer('recurrence_mult');
             $table->string('recurrence_period_type', 2048);

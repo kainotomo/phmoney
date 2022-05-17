@@ -15,7 +15,7 @@ class CreateBudgetAmountsTable extends Migration
     {
         Schema::create('budget_amounts', function (Blueprint $table) {
             $table->id('pk');
-            $table->foreignIdFor(App\Models\Team::class)->index();
+            $table->foreignIdFor(config('phmoney.foreign_id_model'), 'team_id')->index();
             $table->bigInteger('id');
             $table->uuid('budget_guid');
             $table->uuid('account_guid');

@@ -15,7 +15,7 @@ class CreateJobsTable extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->id('pk');
-            $table->foreignIdFor(App\Models\Team::class)->index();
+            $table->foreignIdFor(config('phmoney.foreign_id_model'), 'team_id')->index();
             $table->uuid('guid')->index();
             $table->string('id', 2048);
             $table->string('name', 2048);

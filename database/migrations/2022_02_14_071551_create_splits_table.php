@@ -15,7 +15,7 @@ class CreateSplitsTable extends Migration
     {
         Schema::create('splits', function (Blueprint $table) {
             $table->id('pk');
-            $table->foreignIdFor(App\Models\Team::class)->index();
+            $table->foreignIdFor(config('phmoney.foreign_id_model'), 'team_id')->index();
             $table->uuid('guid')->index();
             $table->uuid('tx_guid')->index('splits_tx_guid_index');
             $table->uuid('account_guid')->index('splits_account_guid_index');

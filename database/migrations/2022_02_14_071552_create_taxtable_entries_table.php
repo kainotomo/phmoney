@@ -15,7 +15,7 @@ class CreateTaxtableEntriesTable extends Migration
     {
         Schema::create('taxtable_entries', function (Blueprint $table) {
             $table->id('pk');
-            $table->foreignIdFor(App\Models\Team::class)->index();
+            $table->foreignIdFor(config('phmoney.foreign_id_model'), 'team_id')->index();
             $table->bigInteger('id');
             $table->uuid('guid');
             $table->uuid('taxtable');

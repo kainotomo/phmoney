@@ -15,7 +15,7 @@ class CreateGnclockTable extends Migration
     {
         Schema::create('gnclock', function (Blueprint $table) {
             $table->id('pk');
-            $table->foreignIdFor(App\Models\Team::class)->index();
+            $table->foreignIdFor(config('phmoney.foreign_id_model'), 'team_id')->index();
             $table->string('Hostname')->nullable();
             $table->integer('PID')->nullable();
         });
