@@ -89,8 +89,6 @@ class AccountsController extends Controller
 
         Account::create($validated);
 
-        return Redirect::route('accounts');
-
         return $request->wantsJson()
                     ? new JsonResponse('', 200)
                     : back()->with('status', 'account-created');
