@@ -25,13 +25,6 @@ class PHMoneyServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'phmoney');
-
-        Route::group([
-            'domain' => config('jetstream.domain', null),
-            'prefix' => config('jetstream.prefix', config('jetstream.path')),
-            ['middleware' => config('jetstream.middleware', ['web'])]
-        ], function () {
-            $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
-        });
+        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
     }
 }
