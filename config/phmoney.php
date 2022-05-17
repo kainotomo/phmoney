@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'foreign_id_model' => config('phmoney.foreign_id_model'), 'team_id'
+    'foreign_id_model' => App\Models\Team::class
 ];
