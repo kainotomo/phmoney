@@ -2,6 +2,7 @@
 
 namespace Kainotomo\PHMoney\Models;
 
+use App\Models\Team;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
 use Ramsey\Uuid\Uuid;
@@ -39,6 +40,18 @@ class Base extends Model
     public function newModelQuery()
     {
         return parent::newModelQuery()->where('team_id', auth()->user()->current_team_id);
+    }
+
+    /**
+     * Belongs to Team
+     *
+     * @author Panayiotis Halouvas <phalouvas@kainotomo.com>
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
+     */
+    public function team()
+    {
+        return $this->belongsTo(Team::class);
     }
 
     /**

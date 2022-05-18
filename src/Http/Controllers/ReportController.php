@@ -10,6 +10,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use App\Providers\Jetstream\Jetstream;
+use Kainotomo\PHMoney\Models\Setting;
 
 class ReportController extends Controller
 {
@@ -240,7 +241,7 @@ class ReportController extends Controller
         return Jetstream::inertia()->render(request(), 'Reports/Transactions', [
             'print' => $request->print == 'true' ? true :  false,
             'currencies' => Commodity::where('namespace', Commodity::CURRENCY)->get(),
-            'settings' => $request->user()->currentTeam->settings()->where('type', $request->decodedPath())->get(),
+            'settings' => Setting::where('type', $request->decodedPath())->get(),
             'type' => $request->decodedPath(),
             'title' => $request->title ?? null,
             'company' => $request->company ?? null,

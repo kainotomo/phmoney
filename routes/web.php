@@ -3,9 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'phmoney', 'middleware' => 'web'], function () {
-    Route::get('/', function () {
-        return view('phmoney::phmoney');
-    })->name('phmoney');
+    Route::get('/', [\Kainotomo\PHMoney\Http\Controllers\UserController::class, 'index'])->name('phmoney');
 
     Route::prefix('/user')->group(function () {
         Route::get('/', [\Kainotomo\PHMoney\Http\Controllers\UserController::class, 'show'])->name('phmoney.user');

@@ -14,6 +14,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
+use Kainotomo\PHMoney\Models\Setting;
 
 class OptionsController extends Controller
 {
@@ -51,7 +52,7 @@ class OptionsController extends Controller
     {
         $validated = $request->validate($request->rules());
 
-        $request->user()->currentTeam->settings()->updateOrCreate(
+        Setting::updateOrCreate(
             [
                 'type' => "AccountingPeriod"
             ],

@@ -2,9 +2,6 @@
 
 namespace Kainotomo\PHMoney\Models;
 
-use App\Models\Setting;
-use Illuminate\Support\Carbon;
-
 class Slot extends Base
 {
 
@@ -35,7 +32,7 @@ class Slot extends Base
     public static function getOptions()
     {
         $options = Slot::where('team_id', auth()->user()->current_team_id)->where('name', 'LIKE', 'options%')->orWhere('name', 'LIKE', 'counters%')->orWhere('name', 'LIKE', 'counter_formats%')->get();
-        $setting = auth()->user()->currentTeam->settings()->firstOrCreate(
+        $setting = Setting::firstOrCreate(
             [
                 'team_id' => auth()->user()->current_team_id,
                 'type' => "AccountingPeriod"

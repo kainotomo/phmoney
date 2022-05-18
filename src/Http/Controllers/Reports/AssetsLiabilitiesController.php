@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use App\Providers\Jetstream\Jetstream;
+use Kainotomo\PHMoney\Models\Setting;
 
 class AssetsLiabilitiesController extends ReportController
 {
@@ -74,7 +75,7 @@ class AssetsLiabilitiesController extends ReportController
             'print' => $request->print == 'true' ? true :  false,
             'currencies' => Commodity::where('namespace', Commodity::CURRENCY)->get(),
             'accounts' => $accounts,
-            'settings' => $request->user()->currentTeam->settings()->where('type', $request->decodedPath())->get(),
+            'settings' => Setting::where('type', $request->decodedPath())->get(),
             'type' => $request->decodedPath(),
             'title' => $request->title ?? "Balance Sheet",
             'company' => $request->company ?? null,
@@ -109,7 +110,7 @@ class AssetsLiabilitiesController extends ReportController
             'print' => $request->print == 'true' ? true :  false,
             'currencies' => Commodity::where('namespace', Commodity::CURRENCY)->get(),
             'accounts' => Account::getFlatList(false, true),
-            'settings' => $request->user()->currentTeam->settings()->where('type', $request->decodedPath())->get(),
+            'settings' => Setting::where('type', $request->decodedPath())->get(),
             'type' => $request->decodedPath(),
             'title' => $request->title ?? "Assets",
             'company' => $request->company ?? null,
@@ -136,7 +137,7 @@ class AssetsLiabilitiesController extends ReportController
             'print' => $request->print == 'true' ? true :  false,
             'currencies' => Commodity::where('namespace', Commodity::CURRENCY)->get(),
             'accounts' => $piechart['accounts'],
-            'settings' => $request->user()->currentTeam->settings()->where('type', $request->decodedPath())->get(),
+            'settings' => Setting::where('type', $request->decodedPath())->get(),
             'type' => $request->decodedPath(),
             'title' => $request->title ?? "Assets",
             'company' => $request->company ?? null,
@@ -168,7 +169,7 @@ class AssetsLiabilitiesController extends ReportController
             'print' => $request->print == 'true' ? true :  false,
             'currencies' => Commodity::where('namespace', Commodity::CURRENCY)->get(),
             'accounts' => Account::getFlatList(),
-            'settings' => $request->user()->currentTeam->settings()->where('type', $request->decodedPath())->get(),
+            'settings' => Setting::where('type', $request->decodedPath())->get(),
             'type' => $request->decodedPath(),
             'title' => $request->title ?? "Liabilities",
             'company' => $request->company ?? null,
@@ -195,7 +196,7 @@ class AssetsLiabilitiesController extends ReportController
             'print' => $request->print == 'true' ? true :  false,
             'currencies' => Commodity::where('namespace', Commodity::CURRENCY)->get(),
             'accounts' => $piechart['accounts'],
-            'settings' => $request->user()->currentTeam->settings()->where('type', $request->decodedPath())->get(),
+            'settings' => Setting::where('type', $request->decodedPath())->get(),
             'type' => $request->decodedPath(),
             'title' => $request->title ?? "Liabilities",
             'company' => $request->company ?? null,
@@ -227,7 +228,7 @@ class AssetsLiabilitiesController extends ReportController
             'print' => $request->print == 'true' ? true :  false,
             'currencies' => Commodity::where('namespace', Commodity::CURRENCY)->get(),
             'accounts' => Account::getFlatList(),
-            'settings' => $request->user()->currentTeam->settings()->where('type', $request->decodedPath())->get(),
+            'settings' => Setting::where('type', $request->decodedPath())->get(),
             'type' => $request->decodedPath(),
             'title' => $request->title ?? "Net Worth",
             'company' => $request->company ?? null,
@@ -259,7 +260,7 @@ class AssetsLiabilitiesController extends ReportController
             'print' => $request->print == 'true' ? true :  false,
             'currencies' => Commodity::where('namespace', Commodity::CURRENCY)->get(),
             'accounts' => Account::getFlatList(),
-            'settings' => $request->user()->currentTeam->settings()->where('type', $request->decodedPath())->get(),
+            'settings' => Setting::where('type', $request->decodedPath())->get(),
             'type' => $request->decodedPath(),
             'title' => $request->title ?? "Net Worth",
             'company' => $request->company ?? null,
@@ -348,7 +349,7 @@ class AssetsLiabilitiesController extends ReportController
             'print' => $request->print == 'true' ? true :  false,
             'currencies' => Commodity::where('namespace', Commodity::CURRENCY)->get(),
             'accounts' => Account::getFlatList(false, true),
-            'settings' => $request->user()->currentTeam->settings()->where('type', $request->decodedPath())->get(),
+            'settings' => Setting::where('type', $request->decodedPath())->get(),
             'type' => $request->decodedPath(),
             'title' => $request->title ?? "General Ledger",
             'company' => $request->company ?? null,

@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 use App\Providers\Jetstream\Jetstream;
 use League\Csv\Reader;
+use Kainotomo\PHMoney\Models\Setting;
 
 class TransactionsFromCsvController extends Controller
 {
@@ -179,7 +180,7 @@ class TransactionsFromCsvController extends Controller
         $validated['selected_columns'] = $selected_columns->toArray();
 
         $validated['accounts'] = Account::getFlatList();
-        $validated['import_settings'] = $request->user()->currentTeam->settings()->where(['type' => 'import_transactions_csv'])->get();
+        $validated['import_settings'] = Setting::where(['type' => 'import_transactions_csv'])->get();
 
         Session::put('import_transactions_csv', $validated);
 

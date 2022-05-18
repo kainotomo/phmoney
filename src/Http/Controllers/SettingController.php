@@ -2,9 +2,9 @@
 
 namespace Kainotomo\PHMoney\Http\Controllers;
 
-use App\Http\Requests\SettingRequest;
-use App\Models\Setting;
 use Illuminate\Http\JsonResponse;
+use Kainotomo\PHMoney\Http\Requests\SettingRequest;
+use Kainotomo\PHMoney\Models\Setting;
 
 class SettingController extends Controller
 {
@@ -37,7 +37,7 @@ class SettingController extends Controller
     public function store(SettingRequest $request)
     {
         $validated = $request->validate($request->rules());
-        $setting = $request->user()->currentTeam->settings()->create($validated['setting']);
+        $setting = Setting::create($validated['setting']);
         return $request->wantsJson()
             ? new JsonResponse(['status' => 'settings-stored', 'setting' => $setting], 200)
             : back()->with(['status' => 'settings-stored', 'setting' => $setting]);

@@ -8,6 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Carbon;
+use Kainotomo\PHMoney\Models\Setting;
 
 class Controller extends BaseController
 {
@@ -21,7 +22,7 @@ class Controller extends BaseController
      */
     protected function getStartDate(Request $request)
     {
-        $setting = auth()->user()->currentTeam->settings()->where(
+        $setting = Setting::where(
             [
                 'type' => "AccountingPeriod"
             ]
@@ -76,7 +77,7 @@ class Controller extends BaseController
      */
     protected function getEndDate(Request $request)
     {
-        $setting = auth()->user()->currentTeam->settings()->where(
+        $setting = Setting::where(
             [
                 'type' => "AccountingPeriod"
             ]

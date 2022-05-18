@@ -14,6 +14,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use App\Providers\Jetstream\Jetstream;
+use Kainotomo\PHMoney\Models\Setting;
 
 class BusinessController extends ReportController
 {
@@ -72,7 +73,7 @@ class BusinessController extends ReportController
 
         return Jetstream::inertia()->render(request(), 'Reports/Business/CustomerReport', [
             'print' => $request->print == 'true' ? true :  false,
-            'settings' => $request->user()->currentTeam->settings()->where('type', $request->decodedPath())->get(),
+            'settings' => Setting::where('type', $request->decodedPath())->get(),
             'type' => $request->decodedPath(),
             'title' => $request->title ?? "Customer Report",
             'company' => $request->company ?? null,
@@ -140,7 +141,7 @@ class BusinessController extends ReportController
 
         return Jetstream::inertia()->render(request(), 'Reports/Business/CustomerSummary', [
             'print' => $request->print == 'true' ? true :  false,
-            'settings' => $request->user()->currentTeam->settings()->where('type', $request->decodedPath())->get(),
+            'settings' => Setting::where('type', $request->decodedPath())->get(),
             'type' => $request->decodedPath(),
             'title' => $request->title ?? "Customer Summary",
             'company' => $request->company ?? null,
@@ -212,7 +213,7 @@ class BusinessController extends ReportController
 
         return Jetstream::inertia()->render(request(), 'Reports/Business/EmployeeReport', [
             'print' => $request->print == 'true' ? true :  false,
-            'settings' => $request->user()->currentTeam->settings()->where('type', $request->decodedPath())->get(),
+            'settings' => Setting::where('type', $request->decodedPath())->get(),
             'type' => $request->decodedPath(),
             'title' => $request->title ?? "Employee Report",
             'company' => $request->company ?? null,
@@ -286,7 +287,7 @@ class BusinessController extends ReportController
 
         return Jetstream::inertia()->render(request(), 'Reports/Business/VendorReport', [
             'print' => $request->print == 'true' ? true :  false,
-            'settings' => $request->user()->currentTeam->settings()->where('type', $request->decodedPath())->get(),
+            'settings' => Setting::where('type', $request->decodedPath())->get(),
             'type' => $request->decodedPath(),
             'title' => $request->title ?? "Vendor Report",
             'company' => $request->company ?? null,
