@@ -2,7 +2,8 @@
 
 namespace Kainotomo\PHMoney\Models;
 
-use App\Casts\DateTime;
+use Kainotomo\PHMoney\Casts\DateTime;
+
 class Transaction extends Base
 {
     protected $fillable = [
