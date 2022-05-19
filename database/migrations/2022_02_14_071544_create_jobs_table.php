@@ -13,7 +13,7 @@ class CreateJobsTable extends Migration
      */
     public function up()
     {
-        Schema::create('jobs', function (Blueprint $table) {
+        Schema::connection('mysql_portfolio')->create('jobs', function (Blueprint $table) {
             $table->id('pk');
             $table->foreignIdFor(config('phmoney.foreign_id_model'), 'team_id')->index();
             $table->uuid('guid')->index();
@@ -33,6 +33,6 @@ class CreateJobsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jobs');
+        Schema::connection('mysql_portfolio')->dropIfExists('jobs');
     }
 }

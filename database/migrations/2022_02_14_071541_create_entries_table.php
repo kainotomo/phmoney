@@ -13,7 +13,7 @@ class CreateEntriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('entries', function (Blueprint $table) {
+        Schema::connection('mysql_portfolio')->create('entries', function (Blueprint $table) {
             $table->id('pk');
             $table->foreignIdFor(config('phmoney.foreign_id_model'), 'team_id')->index();
             $table->uuid('guid')->index();
@@ -57,6 +57,6 @@ class CreateEntriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('entries');
+        Schema::connection('mysql_portfolio')->dropIfExists('entries');
     }
 }

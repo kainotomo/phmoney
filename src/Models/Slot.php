@@ -31,34 +31,8 @@ class Slot extends Base
      */
     public static function getOptions()
     {
-        $options = Slot::where('team_id', auth()->user()->current_team_id)->where('name', 'LIKE', 'options%')->orWhere('name', 'LIKE', 'counters%')->orWhere('name', 'LIKE', 'counter_formats%')->get();
-        $setting = Setting::firstOrCreate(
-            [
-                'team_id' => auth()->user()->current_team_id,
-                'type' => "AccountingPeriod"
-            ],
-            [
-                'name' => "Accounting Period",
-                'params' => [
-                    'date_start' => [
-                        'filter_date' => now()->firstOfYear()->toDateString(),
-                        'date_type' => "filter_list",
-                        'list_date' => [
-                            'id' => "start_of_this_year",
-                            'name' => "Start of this year"
-                        ],
-                    ],
-                    'date_end' => [
-                        'filter_date' => now()->toDateString(),
-                        'date_type' => "filter_list",
-                        'list_date' => [
-                            'id' => "today",
-                            'name' => "Today"
-                        ],
-                    ],
-                ],
-            ]
-        );
+        $options = Slot::where('name', 'LIKE', 'options%')->orWhere('name', 'LIKE', 'counters%')->orWhere('name', 'LIKE', 'counter_formats%')->get();
+        $setting = Setting::firstWhere(['type' => "AccountingPeriod"]);
 
         return [
             'guid' => $options->firstWhere('name', 'options')->guid_val ?? null,

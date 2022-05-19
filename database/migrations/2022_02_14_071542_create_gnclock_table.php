@@ -13,7 +13,7 @@ class CreateGnclockTable extends Migration
      */
     public function up()
     {
-        Schema::create('gnclock', function (Blueprint $table) {
+        Schema::connection('mysql_portfolio')->create('gnclock', function (Blueprint $table) {
             $table->id('pk');
             $table->foreignIdFor(config('phmoney.foreign_id_model'), 'team_id')->index();
             $table->string('Hostname')->nullable();
@@ -28,6 +28,6 @@ class CreateGnclockTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gnclock');
+        Schema::connection('mysql_portfolio')->dropIfExists('gnclock');
     }
 }

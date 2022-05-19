@@ -13,7 +13,7 @@ class CreateRecurrencesTable extends Migration
      */
     public function up()
     {
-        Schema::create('recurrences', function (Blueprint $table) {
+        Schema::connection('mysql_portfolio')->create('recurrences', function (Blueprint $table) {
             $table->id('pk');
             $table->foreignIdFor(config('phmoney.foreign_id_model'), 'team_id')->index();
             $table->uuid('obj_guid');
@@ -31,6 +31,6 @@ class CreateRecurrencesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('recurrences');
+        Schema::connection('mysql_portfolio')->dropIfExists('recurrences');
     }
 }

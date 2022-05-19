@@ -13,7 +13,7 @@ class CreateCustomersTable extends Migration
      */
     public function up()
     {
-        Schema::create('customers', function (Blueprint $table) {
+        Schema::connection('mysql_portfolio')->create('customers', function (Blueprint $table) {
             $table->id('pk');
             $table->foreignIdFor(config('phmoney.foreign_id_model'), 'team_id')->index();
             $table->uuid('guid')->index();
@@ -56,6 +56,6 @@ class CreateCustomersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customers');
+        Schema::connection('mysql_portfolio')->dropIfExists('customers');
     }
 }

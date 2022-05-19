@@ -13,7 +13,7 @@ class CreateBilltermsTable extends Migration
      */
     public function up()
     {
-        Schema::create('billterms', function (Blueprint $table) {
+        Schema::connection('mysql_portfolio')->create('billterms', function (Blueprint $table) {
             $table->id('pk');
             $table->foreignIdFor(config('phmoney.foreign_id_model'), 'team_id')->index();
             $table->uuid('guid')->index();
@@ -38,6 +38,6 @@ class CreateBilltermsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('billterms');
+        Schema::connection('mysql_portfolio')->dropIfExists('billterms');
     }
 }

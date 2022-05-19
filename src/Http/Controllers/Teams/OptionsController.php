@@ -3,8 +3,6 @@
 namespace Kainotomo\PHMoney\Http\Controllers\Teams;
 
 use Kainotomo\PHMoney\Http\Controllers\Controller;
-use App\Http\Requests\Teams\DatabaseUploadRequest;
-use App\Http\Requests\Teams\OptionsRequest;
 use Kainotomo\PHMoney\Models\Base;
 use Kainotomo\PHMoney\Models\Book;
 use Kainotomo\PHMoney\Models\Slot;
@@ -287,7 +285,7 @@ class OptionsController extends Controller
      */
     public function download(Team $team)
     {
-        $team->mariadb2sqlite();
+        Base::mariadb2sqlite($team->id);
         return Storage::download("import/sqlite/$team->id.sqlite");
     }
 

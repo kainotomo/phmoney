@@ -13,7 +13,7 @@ class CreateSlotsTable extends Migration
      */
     public function up()
     {
-        Schema::create('slots', function (Blueprint $table) {
+        Schema::connection('mysql_portfolio')->create('slots', function (Blueprint $table) {
             $table->id('pk');
             $table->bigInteger('id');
             $table->foreignIdFor(config('phmoney.foreign_id_model'), 'team_id')->index();
@@ -39,6 +39,6 @@ class CreateSlotsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('slots');
+        Schema::connection('mysql_portfolio')->dropIfExists('slots');
     }
 }

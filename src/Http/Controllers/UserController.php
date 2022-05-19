@@ -5,22 +5,12 @@ namespace Kainotomo\PHMoney\Http\Controllers;
 use Kainotomo\PHMoney\Models\Slot;
 use App\Providers\Jetstream\Jetstream;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Kainotomo\PHMoney\Models\Book;
 
 class UserController extends Controller
 {
 
     public function index(Request $request)
     {
-        $book = Book::first();
-        if (!$book) {
-            dd($book);
-            $user = $request->user();
-            $team_id = $user->currentTeam->id;
-            Storage::copy("samples/business_accounts.gnucash", "import/sqlite/$team_id.sqlite");
-            $user->currentTeam->sqlite2mariadb();
-        }
         return view('phmoney::phmoney');
     }
 

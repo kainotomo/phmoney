@@ -13,7 +13,7 @@ class CreateCommoditiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('commodities', function (Blueprint $table) {
+        Schema::connection('mysql_portfolio')->create('commodities', function (Blueprint $table) {
             $table->id('pk');
             $table->foreignIdFor(config('phmoney.foreign_id_model'), 'team_id')->index();
             $table->uuid('guid')->index();
@@ -35,6 +35,6 @@ class CreateCommoditiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('commodities');
+        Schema::connection('mysql_portfolio')->dropIfExists('commodities');
     }
 }

@@ -13,7 +13,7 @@ class CreateTaxtablesTable extends Migration
      */
     public function up()
     {
-        Schema::create('taxtables', function (Blueprint $table) {
+        Schema::connection('mysql_portfolio')->create('taxtables', function (Blueprint $table) {
             $table->id('pk');
             $table->foreignIdFor(config('phmoney.foreign_id_model'), 'team_id')->index();
             $table->uuid('guid')->index();
@@ -31,6 +31,6 @@ class CreateTaxtablesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('taxtables');
+        Schema::connection('mysql_portfolio')->dropIfExists('taxtables');
     }
 }
