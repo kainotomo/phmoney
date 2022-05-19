@@ -2,18 +2,18 @@
 
 namespace Kainotomo\PHMoney\Http\Controllers;
 
-use App\Http\Requests\SplitRequest;
-use App\Http\Requests\TransactionRequest;
 use Kainotomo\PHMoney\Models\Account;
 use Kainotomo\PHMoney\Models\Base;
 use Kainotomo\PHMoney\Models\Split;
 use Kainotomo\PHMoney\Models\Transaction;
-use App\Rules\SplitsTotal;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 use App\Providers\Jetstream\Jetstream;
+use Kainotomo\PHMoney\Http\Requests\SplitRequest;
+use Kainotomo\PHMoney\Http\Requests\TransactionRequest;
+use Kainotomo\PHMoney\Rules\SplitsTotal;
 
 class TransactionsController extends Controller
 {
@@ -146,7 +146,7 @@ class TransactionsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Kainotomo\PHMoney\Models\Account $account
-     * @param  \App\Http\Requests\SettingRequest  $request
+     * @param  \Kainotomo\PHMoney\Http\Requests\SettingRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(TransactionRequest $request, Account $account)
@@ -256,7 +256,7 @@ class TransactionsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  App\Http\Requests\TransactionRequest  $request
+     * @param  Kainotomo\PHMoney\Http\Requests\TransactionRequest  $request
      * @param \Kainotomo\PHMoney\Models\Account $account
      * @param \Kainotomo\PHMoney\Models\Transaction $transaction
      * @return \Inertia\Response

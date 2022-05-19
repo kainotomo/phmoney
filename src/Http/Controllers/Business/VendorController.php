@@ -3,7 +3,7 @@
 namespace Kainotomo\PHMoney\Http\Controllers\Business;
 
 use Kainotomo\PHMoney\Http\Controllers\Controller;
-use App\Http\Requests\VendorRequest;
+use Kainotomo\PHMoney\Http\Requests\VendorRequest;
 use Kainotomo\PHMoney\Models\Account;
 use Kainotomo\PHMoney\Models\Base;
 use Kainotomo\PHMoney\Models\Billterm;
@@ -69,7 +69,7 @@ class VendorController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\VendorRequest  $request
+     * @param  \Kainotomo\PHMoney\Http\Requests\VendorRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(VendorRequest $request)
@@ -158,7 +158,7 @@ class VendorController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\VendorRequest  $request
+     * @param  \Kainotomo\PHMoney\Http\Requests\VendorRequest  $request
      * @param  \Kainotomo\PHMoney\Models\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */

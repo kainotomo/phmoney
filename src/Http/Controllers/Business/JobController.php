@@ -3,7 +3,7 @@
 namespace Kainotomo\PHMoney\Http\Controllers\Business;
 
 use Kainotomo\PHMoney\Http\Controllers\Controller;
-use App\Http\Requests\JobRequest;
+use Kainotomo\PHMoney\Http\Requests\JobRequest;
 use Kainotomo\PHMoney\Models\Base;
 use Kainotomo\PHMoney\Models\Book;
 use Kainotomo\PHMoney\Models\Customer;
@@ -83,7 +83,7 @@ class JobController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\JobRequest  $request
+     * @param  \Kainotomo\PHMoney\Http\Requests\JobRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(JobRequest $request)
@@ -170,7 +170,7 @@ class JobController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\JobRequest  $request
+     * @param  \Kainotomo\PHMoney\Http\Requests\JobRequest  $request
      * @param  \Kainotomo\PHMoney\Models\Job  $job
      * @return \Illuminate\Http\Response
      */

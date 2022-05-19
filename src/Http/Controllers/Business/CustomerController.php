@@ -3,7 +3,7 @@
 namespace Kainotomo\PHMoney\Http\Controllers\Business;
 
 use Kainotomo\PHMoney\Http\Controllers\Controller;
-use App\Http\Requests\CustomerRequest;
+use Kainotomo\PHMoney\Http\Requests\CustomerRequest;
 use Kainotomo\PHMoney\Models\Account;
 use Kainotomo\PHMoney\Models\Billterm;
 use Kainotomo\PHMoney\Models\Book;
@@ -71,7 +71,7 @@ class CustomerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\CustomerRequest  $request
+     * @param  \Kainotomo\PHMoney\Http\Requests\CustomerRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(CustomerRequest $request)
@@ -123,7 +123,7 @@ class CustomerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\CustomerRequest  $request
+     * @param  \Kainotomo\PHMoney\Http\Requests\CustomerRequest  $request
      * @param  \Kainotomo\PHMoney\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */

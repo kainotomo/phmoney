@@ -3,13 +3,12 @@
 namespace Kainotomo\PHMoney\Http\Controllers\Business;
 
 use Kainotomo\PHMoney\Http\Controllers\Controller;
-use App\Http\Requests\BilltermRequest;
 use Kainotomo\PHMoney\Models\Billterm;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use Inertia\Inertia;
 use App\Providers\Jetstream\Jetstream;
+use Kainotomo\PHMoney\Http\Requests\BilltermRequest;
 
 class BilltermController extends Controller
 {
@@ -45,7 +44,7 @@ class BilltermController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\BilltermRequest  $request
+     * @param  \Kainotomo\PHMoney\Http\Requests\BilltermRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(BilltermRequest $request)
@@ -95,7 +94,7 @@ class BilltermController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\BilltermRequest  $request
+     * @param  \Kainotomo\PHMoney\Http\Requests\BilltermRequest  $request
      * @param  \Kainotomo\PHMoney\Models\Billterm  $billterm
      * @return \Illuminate\Http\Response
      */

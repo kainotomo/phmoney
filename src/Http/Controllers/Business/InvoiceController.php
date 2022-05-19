@@ -3,8 +3,8 @@
 namespace Kainotomo\PHMoney\Http\Controllers\Business;
 
 use Kainotomo\PHMoney\Http\Controllers\Controller;
-use App\Http\Requests\InvoicePostRequest;
-use App\Http\Requests\InvoiceRequest;
+use Kainotomo\PHMoney\Http\Requests\InvoicePostRequest;
+use Kainotomo\PHMoney\Http\Requests\InvoiceRequest;
 use Kainotomo\PHMoney\Models\Account;
 use Kainotomo\PHMoney\Models\Base;
 use Kainotomo\PHMoney\Models\Billterm;
@@ -161,7 +161,7 @@ class InvoiceController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\InvoiceRequest  $request
+     * @param  \Kainotomo\PHMoney\Http\Requests\InvoiceRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(InvoiceRequest $request)
@@ -270,7 +270,7 @@ class InvoiceController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\InvoiceRequest  $request
+     * @param  \Kainotomo\PHMoney\Http\Requests\InvoiceRequest  $request
      * @param  \Kainotomo\PHMoney\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
@@ -365,7 +365,7 @@ class InvoiceController extends Controller
     /**
      * Post the specified resource in storage.
      *
-     * @param  \App\Http\Requests\InvoicePostRequest  $request
+     * @param  \Kainotomo\PHMoney\Http\Requests\InvoicePostRequest  $request
      * @param  \Kainotomo\PHMoney\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
@@ -553,7 +553,7 @@ class InvoiceController extends Controller
     /**
      * Post the specified resource in storage.
      *
-     * @param  \App\Http\Requests\Request  $request
+     * @param  \Kainotomo\PHMoney\Http\Requests\Request  $request
      * @param  \Kainotomo\PHMoney\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */

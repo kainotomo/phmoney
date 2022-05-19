@@ -9,7 +9,6 @@ use Kainotomo\PHMoney\Models\Split;
 use Kainotomo\PHMoney\Models\Transaction;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 use App\Providers\Jetstream\Jetstream;

@@ -3,7 +3,7 @@
 namespace Kainotomo\PHMoney\Http\Controllers\Business;
 
 use Kainotomo\PHMoney\Http\Controllers\Controller;
-use App\Http\Requests\PaymentRequest;
+use Kainotomo\PHMoney\Http\Requests\PaymentRequest;
 use Kainotomo\PHMoney\Models\Account;
 use Kainotomo\PHMoney\Models\Base;
 use Kainotomo\PHMoney\Models\Invoice;
@@ -84,7 +84,7 @@ class PaymentController extends Controller
     /**
      * Post the specified resource in storage.
      *
-     * @param  \App\Http\Requests\PaymentRequest  $request
+     * @param  \Kainotomo\PHMoney\Http\Requests\PaymentRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(PaymentRequest $request)

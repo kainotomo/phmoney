@@ -3,7 +3,7 @@
 namespace Kainotomo\PHMoney\Http\Controllers\Business;
 
 use Kainotomo\PHMoney\Http\Controllers\Controller;
-use App\Http\Requests\EntryRequest;
+use Kainotomo\PHMoney\Http\Requests\EntryRequest;
 use Kainotomo\PHMoney\Models\Account;
 use Kainotomo\PHMoney\Models\Entry;
 use Kainotomo\PHMoney\Models\Invoice;
@@ -137,7 +137,7 @@ class EntryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\EntryRequest  $request
+     * @param  \Kainotomo\PHMoney\Http\Requests\EntryRequest  $request
      * @param Kainotomo\PHMoney\Models\Invoice $invoice
      * @return \Illuminate\Http\Response
      */
@@ -221,7 +221,7 @@ class EntryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\EntryRequest  $request
+     * @param  \Kainotomo\PHMoney\Http\Requests\EntryRequest  $request
      * @param Kainotomo\PHMoney\Models\Invoice $invoice
      * @param  \Kainotomo\PHMoney\Models\Entry  $entry
      * @return \Illuminate\Http\Response

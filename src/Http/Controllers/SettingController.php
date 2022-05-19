@@ -31,7 +31,7 @@ class SettingController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\SettingRequest  $request
+     * @param  \Kainotomo\PHMoney\Http\Requests\SettingRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(SettingRequest $request)
@@ -68,7 +68,7 @@ class SettingController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\SettingRequest  $request
+     * @param  \Kainotomo\PHMoney\Http\Requests\SettingRequest  $request
      * @param  \App\Models\Setting  $setting
      * @return \Illuminate\Http\Response
      */

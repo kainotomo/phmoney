@@ -3,7 +3,7 @@
 namespace Kainotomo\PHMoney\Http\Controllers\Business;
 
 use Kainotomo\PHMoney\Http\Controllers\Controller;
-use App\Http\Requests\EmployeeRequest;
+use Kainotomo\PHMoney\Http\Requests\EmployeeRequest;
 use Kainotomo\PHMoney\Models\Account;
 use Kainotomo\PHMoney\Models\Base;
 use Kainotomo\PHMoney\Models\Billterm;
@@ -69,7 +69,7 @@ class EmployeeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\EmployeeRequest  $request
+     * @param  \Kainotomo\PHMoney\Http\Requests\EmployeeRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(EmployeeRequest $request)
@@ -144,7 +144,7 @@ class EmployeeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\EmployeeRequest  $request
+     * @param  \Kainotomo\PHMoney\Http\Requests\EmployeeRequest  $request
      * @param  \Kainotomo\PHMoney\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */

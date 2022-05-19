@@ -3,7 +3,6 @@
 namespace Kainotomo\PHMoney\Http\Controllers;
 
 use Kainotomo\PHMoney\Models\Account;
-use Kainotomo\PHMoney\Models\Book;
 use Kainotomo\PHMoney\Models\Commodity;
 use Kainotomo\PHMoney\Models\Slot;
 use Illuminate\Http\Request;

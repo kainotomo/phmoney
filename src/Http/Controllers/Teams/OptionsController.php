@@ -12,6 +12,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
+use Kainotomo\PHMoney\Http\Requests\Teams\DatabaseUploadRequest;
+use Kainotomo\PHMoney\Http\Requests\Teams\OptionsRequest;
 use Kainotomo\PHMoney\Models\Setting;
 
 class OptionsController extends Controller
@@ -42,7 +44,7 @@ class OptionsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\OptionsRequest  $request
+     * @param  \Kainotomo\PHMoney\Http\Requests\OptionsRequest  $request
      * @param \App\Models\Team $team
      * @return \Illuminate\Http\Response
      */
@@ -292,7 +294,7 @@ class OptionsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\DatabaseUploadRequest  $request
+     * @param  \Kainotomo\PHMoney\Http\Requests\DatabaseUploadRequest  $request
      * @param \App\Models\Team $team
      * @return \Illuminate\Http\Response
      */

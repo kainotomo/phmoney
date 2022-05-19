@@ -3,7 +3,7 @@
 namespace Kainotomo\PHMoney\Http\Controllers\Business;
 
 use Kainotomo\PHMoney\Http\Controllers\Controller;
-use App\Http\Requests\TaxtableEntryRequest;
+use Kainotomo\PHMoney\Http\Requests\TaxtableEntryRequest;
 use Kainotomo\PHMoney\Models\Account;
 use Kainotomo\PHMoney\Models\Taxtable;
 use Kainotomo\PHMoney\Models\TaxtableEntry;
@@ -51,7 +51,7 @@ class TaxtableEntryController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Kainotomo\PHMoney\Models\Taxtable $taxtable
-     * @param  \App\Http\Requests\TaxtableEntryRequest  $request
+     * @param  \Kainotomo\PHMoney\Http\Requests\TaxtableEntryRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Taxtable $taxtable, TaxtableEntryRequest $request)
@@ -107,7 +107,7 @@ class TaxtableEntryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\TaxtableEntryRequest  $request
+     * @param  \Kainotomo\PHMoney\Http\Requests\TaxtableEntryRequest  $request
      * @param  \Kainotomo\PHMoney\Models\Taxtable  $taxtable
      * @param  \Kainotomo\PHMoney\Models\TaxtableEntry  $taxtableentry
      * @return \Illuminate\Http\Response
