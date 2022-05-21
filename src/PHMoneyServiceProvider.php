@@ -40,5 +40,18 @@ class PHMoneyServiceProvider extends ServiceProvider
             TeamDeleted::class,
             [TeamEventSubscriber::class, 'handleTeamDeleted']
         );
+
+        $this->notRunningInConsole();
+
+    }
+
+    protected function notRunningInConsole() {
+        if (! $this->app->runningInConsole()) {
+            return;
+        }
+
+        $this->commands([
+            Console\InstallCommand::class,
+        ]);
     }
 }
