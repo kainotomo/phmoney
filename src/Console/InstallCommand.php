@@ -35,6 +35,8 @@ class InstallCommand extends Command
         $filesystem = new Filesystem;
         $filesystem->copyDirectory(__DIR__.'/../../stubs/public/js/phmoney_assets', public_path('js/phmoney_assets'));
 
+        copy(__DIR__.'/../../stubs/resources/views/phmoney.blade.php', resource_path('views/phmoney.blade.php'));
+
         $this->line('');
         $this->info('PHMoney scaffolding installed successfully.');
         $this->comment('Please execute "npm install');
