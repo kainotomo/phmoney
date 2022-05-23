@@ -9,21 +9,21 @@ use Illuminate\Support\Str;
 use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
 
-class InstallCommand extends Command
+class UpdateCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'phmoney:install {--composer=global : Absolute path to the Composer binary which should be used to install packages}';
+    protected $signature = 'phmoney:update {--composer=global : Absolute path to the Composer binary which should be used to install packages}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Install the PHMoney components and resources';
+    protected $description = 'Update the PHMoney components and resources';
 
     /**
      * Execute the console command.
@@ -32,10 +32,11 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        copy(__DIR__.'/../../stubs/resources/views/phmoney.blade.php', resource_path('views/phmoney.blade.php'));
+        $filesystem = new Filesystem;
+        $filesystem->copyDirectory(__DIR__.'/../../stubs/public/js/phmoney_assets', public_path('js/phmoney_assets'));
 
         $this->line('');
-        $this->info('PHMoney installed successfully.');
+        $this->info('PHMoney updated successfully.');
     }
 
     /**

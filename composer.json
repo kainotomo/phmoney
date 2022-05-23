@@ -47,7 +47,11 @@
     "prefer-stable": true,
     "scripts": {
         "post-install-cmd": [
-            "php artisan phmoney:install"
+            "@php artisan phmoney:install",
+            "@php artisan phmoney:update"
+        ],
+        "post-update-cmd": [
+            "@php artisan phmoney:update"
         ]
     }
 }

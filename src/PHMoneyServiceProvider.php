@@ -52,6 +52,7 @@ class PHMoneyServiceProvider extends ServiceProvider
 
         $this->commands([
             Console\InstallCommand::class,
+            Console\UpdateCommand::class,
         ]);
     }
 }
