@@ -32,16 +32,30 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        // Install NPM packages...
-        $this->updateNodePackages(function ($packages) {
-            return [
-                "@kainotomo/phmoney_assets" => "^0.0.15"
-            ] + $packages;
-        });
+        $filesystem = new Filesystem;
+        $filesystem->copyDirectory(__DIR__.'/../../stubs/public/js/phmoney_assets', public_path('js/phmoney_assets'));
 
         $this->line('');
         $this->info('PHMoney scaffolding installed successfully.');
-        $this->comment('Please execute "npm install && npm run dev" to build your assets.');
+        $this->comment('Please execute "npm install');
+    }
+
+    /**
+     * Install the service provider in the application configuration file.
+     *
+     * @param  string  $after
+     * @param  string  $name
+     * @return void
+     */
+    protected function installServiceProviderAfter($after, $name)
+    {
+        if (! Str::contains($appConfig = file_get_contents(config_path('app.php')), 'App\\Providers\\'.$name.'::class')) {
+            file_put_contents(config_path('app.php'), str_replace(
+                'App\\Providers\\'.$after.'::class,',
+                'App\\Providers\\'.$after.'::class,'.PHP_EOL.'        App\\Providers\\'.$name.'::class,',
+                $appConfig
+            ));
+        }
     }
 
     /**

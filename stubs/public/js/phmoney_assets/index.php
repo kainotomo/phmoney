@@ -1,11 +1,17 @@
 <?php
-$manifestJson = file_get_contents(url('/js/phmoney_assets/manifest.json'));
+
+$manifestJson = file_get_contents('./manifest.json');
 $manifest = json_decode($manifestJson, true);
-$main_ts = url('/js/phmoney_assets/' . $manifest['src/main.ts']['file']);
-$main_css = url('/js/phmoney_assets/' . $manifest['src/main.ts']['css'][0]);
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+    
     <!-- Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 
@@ -17,11 +23,12 @@ $main_css = url('/js/phmoney_assets/' . $manifest['src/main.ts']['css'][0]);
 
     <!-- Google Captcha -->
     <script src="https://www.google.com/recaptcha/api.js"></script>
-
-    <script type="module" crossorigin src="{{ $main_ts }}"></script>
-    <link rel="stylesheet" href="{{ $main_css }}" />
+    
+    <script type="module" crossorigin src="/<?php echo $manifest['src/main.ts']['file'] ?>"></script>
+    <link rel="stylesheet" href="/<?php echo $manifest['src/main.ts']['css'][0] ?>" />
   </head>
   <body>
     <div id="app_gnucash_component"></div>
+    
   </body>
 </html>
