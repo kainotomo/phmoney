@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 use App\Providers\Jetstream\Jetstream;
+use Illuminate\Support\Facades\DB;
 
 class AccountsController extends Controller
 {
@@ -22,21 +23,39 @@ class AccountsController extends Controller
      */
     public function index(Request $request)
     {
-        $book = Book::with('root_account')->first();
-        $query = Account::with('childs_tree_with_sum')->where(['guid' => $book->root_account_guid]);
+        $amounts = DB::connection('mysql_portfolio')->table('splits')
+            ->select(
+                'accounts.guid',
+                'accounts.name',
+                DB::raw('sum(1.0*splits.value_num/splits.value_denom) as amount'),
+                'transactions.post_date',
+                'commodities.mnemonic',
+                'commodities.fraction',
+            )
+            ->where('splits.team_id', $request->user()->currentTeam->id)
+            ->where('accounts.team_id', $request->user()->currentTeam->id)
+            ->where('transactions.team_id', $request->user()->currentTeam->id)
+            ->where('commodities.team_id', $request->user()->currentTeam->id)
+            ->leftJoin('accounts', 'accounts.guid', '=', 'splits.account_guid')
+            ->leftJoin('transactions', 'transactions.guid', '=', 'splits.tx_guid')
+            ->leftJoin('commodities', 'commodities.guid', '=', 'accounts.commodity_guid')
+            ->groupBy('splits.account_guid')
+            ->get();
 
-        $accounts = $query->get();
-        $accounts = $accounts[0]->childs_tree_with_sum;
+        $accounts = Account::getFlatList(false, true, null, null, 0, null, null, $amounts);
+        $items = collect($accounts->all());
 
-        $net_assets = 0;
-        $profits = 0;
-        Account::calculateAmountTotal($accounts, $net_assets, $profits);
+        $assets_items = $items->whereIn('type', array_merge(Account::ASSETS, Account::LIABILITYS, Account::EQUITYS));
+        $net_assets = $assets_items->sum('amount');
+        $profits_items = $items->whereIn('type', array_merge(Account::EXPENSES, Account::INCOMES));
+        $profits = $profits_items->sum('amount');
 
-        return Jetstream::inertia()->render(request(), 'Accounts/Index',[
-            'accounts' => $accounts,
+        return Jetstream::inertia()->render(request(), 'Accounts/Index', [
+            'accounts' => $items,
             'net_assets' => $net_assets,
             'profits' => $profits,
-            'commodity' => $book->root_account->commodity,
+            'commodity' => Book::with('root_account')->first()->root_account->commodity,
+            'account_types' => Account::TYPES
         ]);
     }
 
@@ -56,7 +75,7 @@ class AccountsController extends Controller
         $account->commodity_guid = $account->parent->commodity_guid;
         $accounts = Account::getFlatList(true, true);
 
-        return Jetstream::inertia()->render(request(), 'Accounts/Create',[
+        return Jetstream::inertia()->render(request(), 'Accounts/Create', [
             'account' => $account,
             'accounts' => $accounts,
             'account_types' => Account::TYPES,
@@ -83,14 +102,14 @@ class AccountsController extends Controller
             'account_type' => ['required', 'string', 'max:2048'],
             'parent_guid' => ['required', 'exists:Kainotomo\PHMoney\Models\Account,guid'],
             'commodity_guid' => ['required', 'exists:Kainotomo\PHMoney\Models\Commodity,guid']
-            ])->validate();
+        ])->validate();
         $validated = array_merge(['non_std_scu' => 0], $validated);
 
         Account::create($validated);
 
         return $request->wantsJson()
-                    ? new JsonResponse('', 200)
-                    : back()->with('status', 'account-created');
+            ? new JsonResponse('', 200)
+            : back()->with('status', 'account-created');
     }
 
     /**
@@ -104,7 +123,7 @@ class AccountsController extends Controller
         $account->parent;
         $accounts = Account::getFlatList(true, true);
 
-        return Jetstream::inertia()->render(request(), 'Accounts/Edit',[
+        return Jetstream::inertia()->render(request(), 'Accounts/Edit', [
             'account' => $account,
             'accounts' => $accounts,
             'account_types' => Account::TYPES
@@ -130,13 +149,13 @@ class AccountsController extends Controller
             'account_type' => ['required', 'string', 'max:2048'],
             'parent_guid' => ['required', 'exists:Kainotomo\PHMoney\Models\Account,guid'],
             'commodity_guid' => ['required', 'exists:Kainotomo\PHMoney\Models\Commodity,guid']
-            ])->validate();
+        ])->validate();
 
         $account->update($validated);
 
         return $request->wantsJson()
-                    ? new JsonResponse('', 200)
-                    : back()->with('status', 'account-updated');
+            ? new JsonResponse('', 200)
+            : back()->with('status', 'account-updated');
     }
 
     /**
@@ -152,7 +171,7 @@ class AccountsController extends Controller
         Transaction::whereIn('guid', $tx_guids)->delete();
         $account->delete();
         return request()->wantsJson()
-                    ? new JsonResponse('', 200)
-                    : back()->with('status', 'account-deleted');
+            ? new JsonResponse('', 200)
+            : back()->with('status', 'account-deleted');
     }
 }

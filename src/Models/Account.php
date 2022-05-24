@@ -207,6 +207,7 @@ class Account extends Base
                     'name_indent' => $book->root_account->name,
                     'type' => $book->root_account->account_type,
                     'code' => $book->root_account->code,
+                    'description' => $book->root_account->description,
                     'placeholder' => $book->root_account->placeholder,
                     'level' => $level,
                     'commodity' => [
@@ -244,6 +245,7 @@ class Account extends Base
                 'name_simple' => $child->name,
                 'name_indent' => $indent . $child->name,
                 'code' => $child->code,
+                'description' => $child->description,
                 'type' => $child->account_type,
                 'placeholder' => $child->placeholder,
                 'level' => $level,
