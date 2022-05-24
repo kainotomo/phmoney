@@ -307,7 +307,7 @@ class OptionsController extends Controller
             $validated['sqlite_file'],
             "$team->id.sqlite"
         );
-        $team->sqlite2mariadb();
+        Base::sqlite2mariadb($team->id);
 
         return $request->wantsJson()
             ? new JsonResponse('', 200)
