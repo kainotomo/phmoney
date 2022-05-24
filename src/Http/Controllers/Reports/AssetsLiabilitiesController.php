@@ -2,7 +2,7 @@
 
 namespace Kainotomo\PHMoney\Http\Controllers\Reports;
 
-use App\Http\Controllers\ReportController;
+use Kainotomo\PHMoney\Http\Controllers\ReportController;
 use Kainotomo\PHMoney\Models\Account;
 use Kainotomo\PHMoney\Models\Base;
 use Kainotomo\PHMoney\Models\Commodity;
