@@ -45,7 +45,7 @@ class AccountsController extends Controller
         $accounts = Account::getFlatList(false, true, null, null, 0, null, null, $amounts);
         $items = collect($accounts->all());
 
-        $assets_items = $items->whereIn('type', array_merge(Account::ASSETS, Account::LIABILITYS, Account::EQUITYS));
+        $assets_items = $items->whereIn('type', array_merge(Account::ASSETS, Account::LIABILITYS));
         $net_assets = $assets_items->sum('amount');
         $profits_items = $items->whereIn('type', array_merge(Account::EXPENSES, Account::INCOMES));
         $profits = $profits_items->sum('amount');
