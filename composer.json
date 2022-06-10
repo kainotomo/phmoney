@@ -1,6 +1,6 @@
 {
-    "name": "kainotomo/phmoney",
-    "description": "PHMoney Double-Entry Accounting Program.",
+    "name": "kainotomo/phmoney_provider",
+    "description": "PHMoney Double-Entry Accounting Program laravel provider.",
     "keywords": [
         "laravel",
         "accounting",
