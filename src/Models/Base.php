@@ -11,7 +11,7 @@ use Ramsey\Uuid\Uuid;
 
 class Base extends Model
 {
-    protected $connection = 'mysql_portfolio';
+    protected $connection = 'phmoney_portfolio';
 
     public $timestamps = false;
 
@@ -107,13 +107,13 @@ class Base extends Model
     public static function deleteMariadb(int $team_id) {
         Base::setSqliteConnection($team_id);
 
-        $tables = Schema::connection('mysql_portfolio')->getAllTables();
+        $tables = Schema::connection('phmoney_portfolio')->getAllTables();
         foreach ($tables as $table) {
             $table_name = $table->Tables_in_phmoney_portfolio;
             if ($table_name === 'migrations') {
                 continue;
             }
-            DB::connection('mysql_portfolio')->table($table_name)->where('team_id', auth()->user()->current_team_id)->delete();
+            DB::connection('phmoney_portfolio')->table($table_name)->where('team_id', auth()->user()->current_team_id)->delete();
         }
     }
 
@@ -125,13 +125,13 @@ class Base extends Model
     public static function sqlite2mariadb(int $team_id) {
         Base::setSqliteConnection($team_id);
 
-        $tables = Schema::connection('mysql_portfolio')->getAllTables();
+        $tables = Schema::connection('phmoney_portfolio')->getAllTables();
         foreach ($tables as $table) {
             $table_name = $table->Tables_in_phmoney_portfolio;
             if ($table_name === 'migrations' || $table_name === 'settings') {
                 continue;
             }
-            DB::connection('mysql_portfolio')->table($table_name)->where('team_id', $team_id)->delete();
+            DB::connection('phmoney_portfolio')->table($table_name)->where('team_id', $team_id)->delete();
             DB::connection('sqlite')->table($table_name)->orderBy('guid')->chunk(200, function ($values) use ($table_name, $team_id) {
                 $inserts = [];
                 foreach ($values as $value) {
@@ -139,7 +139,7 @@ class Base extends Model
                     $insert['team_id'] = $team_id;
                     $inserts[] = $insert;
                 }
-                DB::connection('mysql_portfolio')->table($table_name)->insert($inserts);
+                DB::connection('phmoney_portfolio')->table($table_name)->insert($inserts);
             });
         }
     }
@@ -152,14 +152,14 @@ class Base extends Model
     public static function mariadb2sqlite(int $team_id) {
         Base::setSqliteConnection($team_id);
 
-        $tables = Schema::connection('mysql_portfolio')->getAllTables();
+        $tables = Schema::connection('phmoney_portfolio')->getAllTables();
         foreach ($tables as $table) {
             $table_name = $table->Tables_in_phmoney_portfolio;
             if ($table_name === 'migrations') {
                 continue;
             }
             DB::connection('sqlite')->table($table_name)->delete();
-            DB::connection('mysql_portfolio')->table($table_name)->where('team_id', $team_id)->orderBy('pk')->chunk(200, function ($values) use ($table_name) {
+            DB::connection('phmoney_portfolio')->table($table_name)->where('team_id', $team_id)->orderBy('pk')->chunk(200, function ($values) use ($table_name) {
                 $inserts = [];
                 foreach ($values as $value) {
                     $insert = json_decode(json_encode($value), true);

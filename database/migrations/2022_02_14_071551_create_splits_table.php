@@ -13,7 +13,7 @@ class CreateSplitsTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql_portfolio')->create('splits', function (Blueprint $table) {
+        Schema::connection('phmoney_portfolio')->create('splits', function (Blueprint $table) {
             $table->id('pk');
             $table->foreignIdFor(config('phmoney.foreign_id_model'), 'team_id')->index();
             $table->uuid('guid')->index();
@@ -38,6 +38,6 @@ class CreateSplitsTable extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql_portfolio')->dropIfExists('splits');
+        Schema::connection('phmoney_portfolio')->dropIfExists('splits');
     }
 }

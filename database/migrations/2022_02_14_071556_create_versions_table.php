@@ -13,7 +13,7 @@ class CreateVersionsTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql_portfolio')->create('versions', function (Blueprint $table) {
+        Schema::connection('phmoney_portfolio')->create('versions', function (Blueprint $table) {
             $table->id('pk');
             $table->foreignIdFor(config('phmoney.foreign_id_model'), 'team_id')->index();
             $table->string('table_name', 50)->index();
@@ -28,6 +28,6 @@ class CreateVersionsTable extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql_portfolio')->dropIfExists('versions');
+        Schema::connection('phmoney_portfolio')->dropIfExists('versions');
     }
 }

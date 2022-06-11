@@ -5,7 +5,7 @@ namespace Kainotomo\PHMoney\Models;
 class Slot extends Base
 {
 
-    protected $connection = 'mysql_portfolio';
+    protected $connection = 'phmoney_portfolio';
 
     public $timestamps = false;
 

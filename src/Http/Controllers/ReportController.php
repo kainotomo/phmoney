@@ -88,7 +88,7 @@ class ReportController extends Controller
             $date_to = $this->increaseDate($request, $date_from);
             $j = 0;
             while ($date_from->lessThanOrEqualTo($date_end)) {
-                $query = DB::connection('mysql_portfolio')->table('splits')
+                $query = DB::connection('phmoney_portfolio')->table('splits')
                     ->select(
                         DB::raw('sum(splits.value_num/splits.value_denom) as amount'),
                     )
@@ -134,7 +134,7 @@ class ReportController extends Controller
         $date_start = $this->getStartDate($request);
         $date_end = $this->getEndDate($request);
 
-        $amounts = DB::connection('mysql_portfolio')->table('splits')
+        $amounts = DB::connection('phmoney_portfolio')->table('splits')
             ->select(
                 'accounts.guid',
                 'accounts.name',
@@ -196,7 +196,7 @@ class ReportController extends Controller
         $date_start = $this->getStartDate($request);
         $date_end = $this->getEndDate($request);
 
-        $rows = DB::connection('mysql_portfolio')->table('splits')
+        $rows = DB::connection('phmoney_portfolio')->table('splits')
             ->select(
                 'accounts.guid',
                 'accounts.name',

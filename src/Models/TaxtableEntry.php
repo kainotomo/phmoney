@@ -4,7 +4,7 @@ namespace Kainotomo\PHMoney\Models;
 
 class TaxtableEntry extends Base
 {
-    protected $connection = 'mysql_portfolio';
+    protected $connection = 'phmoney_portfolio';
 
     public $timestamps = false;
 

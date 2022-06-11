@@ -361,7 +361,7 @@ class IncomeExpenseController extends ReportController
         $date_start = $this->getStartDate($request);
         $date_end = $this->getEndDate($request);
 
-        $amounts = DB::connection('mysql_portfolio')->table('splits')
+        $amounts = DB::connection('phmoney_portfolio')->table('splits')
             ->select(
                 'accounts.guid',
                 'accounts.name',
@@ -431,7 +431,7 @@ class IncomeExpenseController extends ReportController
         $date_start = $this->getStartDate($request);
         $date_end = $this->getEndDate($request);
 
-        $amounts = DB::connection('mysql_portfolio')->table('splits')
+        $amounts = DB::connection('phmoney_portfolio')->table('splits')
             ->select(
                 'accounts.guid',
                 'accounts.name',

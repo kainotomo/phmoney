@@ -13,7 +13,7 @@ class CreateBudgetAmountsTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql_portfolio')->create('budget_amounts', function (Blueprint $table) {
+        Schema::connection('phmoney_portfolio')->create('budget_amounts', function (Blueprint $table) {
             $table->id('pk');
             $table->foreignIdFor(config('phmoney.foreign_id_model'), 'team_id')->index();
             $table->bigInteger('id');
@@ -32,6 +32,6 @@ class CreateBudgetAmountsTable extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql_portfolio')->dropIfExists('budget_amounts');
+        Schema::connection('phmoney_portfolio')->dropIfExists('budget_amounts');
     }
 }

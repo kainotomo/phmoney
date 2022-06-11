@@ -23,7 +23,7 @@ class AccountsController extends Controller
      */
     public function index(Request $request)
     {
-        $amounts = DB::connection('mysql_portfolio')->table('splits')
+        $amounts = DB::connection('phmoney_portfolio')->table('splits')
             ->select(
                 'accounts.guid',
                 'accounts.name',

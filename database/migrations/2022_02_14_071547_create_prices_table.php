@@ -13,7 +13,7 @@ class CreatePricesTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql_portfolio')->create('prices', function (Blueprint $table) {
+        Schema::connection('phmoney_portfolio')->create('prices', function (Blueprint $table) {
             $table->id('pk');
             $table->foreignIdFor(config('phmoney.foreign_id_model'), 'team_id')->index();
             $table->uuid('guid')->index();
@@ -34,6 +34,6 @@ class CreatePricesTable extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql_portfolio')->dropIfExists('prices');
+        Schema::connection('phmoney_portfolio')->dropIfExists('prices');
     }
 }

@@ -27,7 +27,7 @@ class DashboardController extends ReportController
         $date_start = $this->getStartDate($request);
         $date_end = $this->getEndDate($request);
 
-        $incomes = DB::connection('mysql_portfolio')->table('splits')
+        $incomes = DB::connection('phmoney_portfolio')->table('splits')
             ->select(
                 DB::raw('sum(splits.value_num/splits.value_denom) as amount'),
             )
@@ -43,7 +43,7 @@ class DashboardController extends ReportController
             ->leftJoin('commodities', 'commodities.guid', '=', 'accounts.commodity_guid')
             ->get();
 
-        $receivables = DB::connection('mysql_portfolio')->table('splits')
+        $receivables = DB::connection('phmoney_portfolio')->table('splits')
             ->select(
                 DB::raw('sum(splits.value_num/splits.value_denom) as amount'),
             )
@@ -59,7 +59,7 @@ class DashboardController extends ReportController
             ->leftJoin('commodities', 'commodities.guid', '=', 'accounts.commodity_guid')
             ->get();
 
-        $expenses = DB::connection('mysql_portfolio')->table('splits')
+        $expenses = DB::connection('phmoney_portfolio')->table('splits')
             ->select(
                 DB::raw('sum(splits.value_num/splits.value_denom) as amount'),
             )
@@ -75,7 +75,7 @@ class DashboardController extends ReportController
             ->leftJoin('commodities', 'commodities.guid', '=', 'accounts.commodity_guid')
             ->get();
 
-        $payables = DB::connection('mysql_portfolio')->table('splits')
+        $payables = DB::connection('phmoney_portfolio')->table('splits')
             ->select(
                 DB::raw('sum(splits.value_num/splits.value_denom) as amount'),
             )

@@ -17,7 +17,7 @@ class TeamEventSubscriber
      */
     public function handleTeamCreated($event) {
         $team_id = $event->team->id;
-        DB::connection('mysql_portfolio')->table('settings')->insert([
+        DB::connection('phmoney_portfolio')->table('settings')->insert([
             'team_id' => $team_id,
             'guid' => Base::uuid(),
             'type' => "AccountingPeriod",
