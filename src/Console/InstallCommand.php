@@ -5,6 +5,7 @@ namespace Kainotomo\PHMoney\Console;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
@@ -32,10 +33,43 @@ class InstallCommand extends Command
      */
     public function handle()
     {
+        $this->setConfigDatabase();
         copy(__DIR__.'/../../stubs/resources/views/phmoney.blade.php', resource_path('views/phmoney.blade.php'));
 
         $this->line('');
         $this->info('PHMoney installed successfully.');
+    }
+
+    /**
+     * Set the connection in database config file
+     *
+     * @return void
+     */
+    protected function setConfigDatabase() {
+        $connection_name = DB::getDefaultConnection();
+        $connections = config('database.connections');
+        $default_connection = $connections[$connection_name];
+        $default_connection['prefix'] = 'phmoney_';
+        $path = __DIR__ . '/../../config/database.php';
+        $search = "'phmoney_portfolio' => [],";
+        $replace = "'phmoney_portfolio' => [" . PHP_EOL;
+        foreach ($default_connection as $key => $value) {
+            $replace .= "           '$key' => ";
+            if (is_string($value)) {
+                $replace .= "'$value'," . PHP_EOL;
+            }
+            elseif (is_array($value)) {
+                $replace .= "[]," . PHP_EOL;
+            }
+            elseif (is_null($value)) {
+                $replace .= "null," . PHP_EOL;
+            }
+            else {
+                $replace .= "$value," . PHP_EOL;
+            }
+        }
+        $replace .= "       ],";
+        $this->replaceInFile($search, $replace, $path);
     }
 
     /**
