@@ -1,5 +1,6 @@
 {
     "name": "kainotomo/phmoney_provider",
+    "type": "library",
     "description": "PHMoney Double-Entry Accounting Program laravel provider.",
     "keywords": [
         "laravel",
