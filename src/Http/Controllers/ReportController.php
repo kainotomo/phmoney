@@ -90,7 +90,7 @@ class ReportController extends Controller
             while ($date_from->lessThanOrEqualTo($date_end)) {
                 $query = DB::connection('phmoney_portfolio')->table('splits')
                     ->select(
-                        DB::raw('sum(splits.value_num/splits.value_denom) as amount'),
+                        DB::raw('sum(phmprt_splits.value_num/phmprt_splits.value_denom) as amount'),
                     )
                     ->where('transactions.post_date', '>=', $date_from)
                     ->where('transactions.post_date', '<=', $date_to)
@@ -138,7 +138,7 @@ class ReportController extends Controller
             ->select(
                 'accounts.guid',
                 'accounts.name',
-                DB::raw('sum(1.0*splits.value_num/splits.value_denom) as amount'),
+                DB::raw('sum(1.0*phmprt_splits.value_num/phmprt_splits.value_denom) as amount'),
                 'transactions.post_date',
                 'commodities.mnemonic',
                 'commodities.fraction',
@@ -202,7 +202,7 @@ class ReportController extends Controller
                 'accounts.name',
                 'splits.guid as split_guid',
                 'splits.memo',
-                DB::raw('splits.value_num/splits.value_denom as amount'),
+                DB::raw('phmprt_splits.value_num/phmprt_splits.value_denom as amount'),
                 'transactions.post_date',
                 'transactions.description',
                 'transactions.num',

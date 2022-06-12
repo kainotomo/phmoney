@@ -2,7 +2,6 @@
 
 namespace Kainotomo\PHMoney\Console;
 
-use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\DB;
@@ -49,7 +48,8 @@ class InstallCommand extends Command
         $connection_name = DB::getDefaultConnection();
         $connections = config('database.connections');
         $default_connection = $connections[$connection_name];
-        $default_connection['prefix'] = 'phmoney_';
+        $default_connection['prefix'] = 'phmprt_';
+        $default_connection['strict'] = 0;
         $path = __DIR__ . '/../../config/database.php';
         $search = "'phmoney_portfolio' => [],";
         $replace = "'phmoney_portfolio' => [" . PHP_EOL;

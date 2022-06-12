@@ -30,7 +30,7 @@ class AssetsLiabilitiesController extends ReportController
             ->select(
                 'accounts.guid',
                 'accounts.name',
-                DB::raw('sum(1.0*splits.value_num/splits.value_denom) as amount'),
+                DB::raw('sum(1.0*phmprt_splits.value_num/phmprt_splits.value_denom) as amount'),
                 'transactions.post_date',
                 'commodities.mnemonic',
                 'commodities.fraction',

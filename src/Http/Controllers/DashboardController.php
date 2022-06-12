@@ -29,7 +29,7 @@ class DashboardController extends ReportController
 
         $incomes = DB::connection('phmoney_portfolio')->table('splits')
             ->select(
-                DB::raw('sum(splits.value_num/splits.value_denom) as amount'),
+                DB::raw('sum(phmprt_splits.value_num/phmprt_splits.value_denom) as amount'),
             )
             ->where('splits.team_id', $request->user()->currentTeam->id)
             ->where('accounts.team_id', $request->user()->currentTeam->id)
@@ -45,7 +45,7 @@ class DashboardController extends ReportController
 
         $receivables = DB::connection('phmoney_portfolio')->table('splits')
             ->select(
-                DB::raw('sum(splits.value_num/splits.value_denom) as amount'),
+                DB::raw('sum(phmprt_splits.value_num/phmprt_splits.value_denom) as amount'),
             )
             ->where('splits.team_id', $request->user()->currentTeam->id)
             ->where('accounts.team_id', $request->user()->currentTeam->id)
@@ -61,7 +61,7 @@ class DashboardController extends ReportController
 
         $expenses = DB::connection('phmoney_portfolio')->table('splits')
             ->select(
-                DB::raw('sum(splits.value_num/splits.value_denom) as amount'),
+                DB::raw('sum(phmprt_splits.value_num/phmprt_splits.value_denom) as amount'),
             )
             ->where('splits.team_id', $request->user()->currentTeam->id)
             ->where('accounts.team_id', $request->user()->currentTeam->id)
@@ -77,7 +77,7 @@ class DashboardController extends ReportController
 
         $payables = DB::connection('phmoney_portfolio')->table('splits')
             ->select(
-                DB::raw('sum(splits.value_num/splits.value_denom) as amount'),
+                DB::raw('sum(phmprt_splits.value_num/phmprt_splits.value_denom) as amount'),
             )
             ->where('splits.team_id', $request->user()->currentTeam->id)
             ->where('accounts.team_id', $request->user()->currentTeam->id)

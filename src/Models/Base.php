@@ -107,9 +107,15 @@ class Base extends Model
     public static function deleteMariadb(int $team_id) {
         Base::setSqliteConnection($team_id);
 
+        $tables_in = 'Tables_in_' . DB::connection('phmoney_portfolio')->getDatabaseName();
+        $prefix = Schema::connection('phmoney_portfolio')->getConnection()->getConfig('prefix');
+        $prefix_acs = Schema::connection('phmoney_acs')->getConnection()->getConfig('prefix');
         $tables = Schema::connection('phmoney_portfolio')->getAllTables();
         foreach ($tables as $table) {
-            $table_name = $table->Tables_in_phmoney_portfolio;
+            if (strpos($table->$tables_in, $prefix_acs) !== false) {
+                continue;
+            }
+            $table_name = str_replace($prefix, '', $table->$tables_in);
             if ($table_name === 'migrations') {
                 continue;
             }
@@ -125,9 +131,15 @@ class Base extends Model
     public static function sqlite2mariadb(int $team_id) {
         Base::setSqliteConnection($team_id);
 
+        $tables_in = 'Tables_in_' . DB::connection('phmoney_portfolio')->getDatabaseName();
+        $prefix = Schema::connection('phmoney_portfolio')->getConnection()->getConfig('prefix');
+        $prefix_acs = Schema::connection('phmoney_acs')->getConnection()->getConfig('prefix');
         $tables = Schema::connection('phmoney_portfolio')->getAllTables();
         foreach ($tables as $table) {
-            $table_name = $table->Tables_in_phmoney_portfolio;
+            if (strpos($table->$tables_in, $prefix_acs) !== false) {
+                continue;
+            }
+            $table_name = str_replace($prefix, '', $table->$tables_in);
             if ($table_name === 'migrations' || $table_name === 'settings') {
                 continue;
             }
@@ -152,9 +164,15 @@ class Base extends Model
     public static function mariadb2sqlite(int $team_id) {
         Base::setSqliteConnection($team_id);
 
+        $tables_in = 'Tables_in_' . DB::connection('phmoney_portfolio')->getDatabaseName();
+        $prefix = Schema::connection('phmoney_portfolio')->getConnection()->getConfig('prefix');
+        $prefix_acs = Schema::connection('phmoney_acs')->getConnection()->getConfig('prefix');
         $tables = Schema::connection('phmoney_portfolio')->getAllTables();
         foreach ($tables as $table) {
-            $table_name = $table->Tables_in_phmoney_portfolio;
+            if (strpos($table->$tables_in, $prefix_acs) !== false) {
+                continue;
+            }
+            $table_name = str_replace($prefix, '', $table->$tables_in);
             if ($table_name === 'migrations') {
                 continue;
             }
