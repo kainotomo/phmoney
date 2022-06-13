@@ -1,8 +1,8 @@
 <?php
-$manifestJson = file_get_contents(url('/js/phmoney_assets/dist/manifest.json'));
+$manifestJson = file_get_contents(url('/js/phmoney_assets/manifest.json'));
 $manifest = json_decode($manifestJson, true);
-$main_ts = url('/js/phmoney_assets/dist/' . $manifest['src/main.ts']['file']);
-$main_css = url('/js/phmoney_assets/dist/' . $manifest['src/main.ts']['css'][0]);
+$main_ts = url('/js/phmoney_assets/' . $manifest['src/main.ts']['file']);
+$main_css = url('/js/phmoney_assets/' . $manifest['src/main.ts']['css'][0]);
 ?>
 
   <head>

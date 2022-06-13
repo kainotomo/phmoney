@@ -33,6 +33,7 @@ class UpdateCommand extends Command
     public function handle()
     {
         $filesystem = new Filesystem;
+        $filesystem->deleteDirectory(public_path('js/phmoney_assets'));
         $filesystem->copyDirectory(__DIR__.'/../../stubs/public/js/phmoney_assets', public_path('js/phmoney_assets'));
 
         $this->line('');
