@@ -5,7 +5,6 @@ namespace Kainotomo\PHMoney\Http\Controllers\Import;
 use Kainotomo\PHMoney\Http\Controllers\Controller;
 use Kainotomo\PHMoney\Models\Account;
 use Kainotomo\PHMoney\Models\Base;
-use Kainotomo\PHMoney\Models\Book;
 use Kainotomo\PHMoney\Models\Split;
 use Kainotomo\PHMoney\Models\Transaction;
 use Illuminate\Http\JsonResponse;

@@ -4,15 +4,14 @@ namespace Kainotomo\PHMoney\Http\Controllers\Reports;
 
 use Kainotomo\PHMoney\Http\Controllers\ReportController;
 use Kainotomo\PHMoney\Models\Account;
-use Kainotomo\PHMoney\Models\Base;
 use Kainotomo\PHMoney\Models\Commodity;
 use Kainotomo\PHMoney\Models\Split;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use App\Providers\Jetstream\Jetstream;
 use Kainotomo\PHMoney\Models\Setting;
+use Kainotomo\PHMoney\Models\Slot;
 
 class IncomeExpenseController extends ReportController
 {
@@ -361,6 +360,8 @@ class IncomeExpenseController extends ReportController
         $date_start = $this->getStartDate($request);
         $date_end = $this->getEndDate($request);
 
+        $slot_ids = Slot::select('obj_guid')->where('name', 'book_closing')->pluck('obj_guid');
+
         $amounts = DB::connection('phmoney_portfolio')->table('splits')
             ->select(
                 'accounts.guid',
@@ -370,12 +371,14 @@ class IncomeExpenseController extends ReportController
                 'commodities.mnemonic',
                 'commodities.fraction',
             )
+            ->whereIn('accounts.account_type', array_merge(Account::INCOMES, Account::EXPENSES))
             ->where('splits.team_id', $request->user()->currentTeam->id)
             ->where('accounts.team_id', $request->user()->currentTeam->id)
             ->where('transactions.team_id', $request->user()->currentTeam->id)
             ->where('commodities.team_id', $request->user()->currentTeam->id)
             ->where('transactions.post_date', '>=', $date_start)
             ->where('transactions.post_date', '<=', $date_end)
+            ->whereNotIn('splits.tx_guid', $slot_ids)
             ->leftJoin('accounts', 'accounts.guid', '=', 'splits.account_guid')
             ->leftJoin('transactions', 'transactions.guid', '=', 'splits.tx_guid')
             ->leftJoin('commodities', 'commodities.guid', '=', 'accounts.commodity_guid')
@@ -409,13 +412,13 @@ class IncomeExpenseController extends ReportController
             'type' => $request->decodedPath(),
             'title' => $request->title ?? "Profit & Loss",
             'company' => $request->company ?? null,
-            'currency' => $request->currency ?? Commodity::where('namespace', Commodity::CURRENCY)->first(),
+            'currency' => $request->currency ? json_decode($request->currency) : Commodity::where('namespace', Commodity::CURRENCY)->first(),
             'date_start' => $date_start,
             'date_end' => $date_end,
             'level' => $request->level,
             'incomes' => $incomes,
             'expenses' => $expenses,
-            'net_income' => abs($incomes['total'] - $expenses['total']),
+            'net_income' => $incomes['total'] - $expenses['total'],
         ]);
     }
 
