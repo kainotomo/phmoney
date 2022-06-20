@@ -178,6 +178,13 @@ Route::group(['prefix' => 'phmoney', 'middleware' => 'web'], function () {
         });
     });
 
+    Route::prefix('/tools')->group(function () {
+        Route::prefix('/closebook')->group(function () {
+            Route::get('/', [\Kainotomo\PHMoney\Http\Controllers\Tools\ClosebookController::class, 'index'])->name('phmoney.tools.closebook');
+            Route::post('/store', [\Kainotomo\PHMoney\Http\Controllers\Tools\ClosebookController::class, 'store'])->name('phmoney.tools.closebook.store');
+        });
+    });
+
     Route::prefix('/teams')->group(function () {
         Route::prefix('/{team}')->group(function () {
             Route::get('/options/show', [\Kainotomo\PHMoney\Http\Controllers\Teams\OptionsController::class, 'index'])->name('phmoney.teams.options.store');
