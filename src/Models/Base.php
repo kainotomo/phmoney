@@ -176,13 +176,20 @@ class Base extends Model
             if ($table_name === 'migrations' || $table_name === 'settings') {
                 continue;
             }
+            $columns = collect(Schema::connection('phmoney_sqlite')->getColumnListing($table_name));
             DB::connection('phmoney_sqlite')->table($table_name)->delete();
-            DB::connection('phmoney_portfolio')->table($table_name)->where('team_id', $team_id)->orderBy('pk')->chunk(200, function ($values) use ($table_name) {
+            DB::connection('phmoney_portfolio')->table($table_name)->where('team_id', $team_id)->orderBy('pk')->chunk(200, function ($items) use ($table_name, $columns) {
                 $inserts = [];
-                foreach ($values as $value) {
-                    $insert = json_decode(json_encode($value), true);
-                    unset($insert['pk']);
-                    unset($insert['team_id']);
+                foreach ($items as $item) {
+                    $insert = [];
+                    foreach ($item as $key => $value) {
+                        $found = $columns->first(function ($value) use ($key) {
+                            return $value == $key;
+                        });
+                        if ($found) {
+                            $insert[$key] = $value;
+                        }
+                    }
                     $inserts[] = $insert;
                 }
                 DB::connection('phmoney_sqlite')->table($table_name)->insert($inserts);
