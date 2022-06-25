@@ -88,8 +88,8 @@ class Base extends Model
     public static function setSqliteConnection(int $team_id = null) {
 
         $team_id = $team_id ?? request()->user()->currentTeam->id;
-        $sqlite = config('database.connections.sqlite');
-        Config::set("database.connections.sqlite", [
+        $sqlite = config('database.connections.phmoney_sqlite');
+        Config::set("database.connections.phmoney_sqlite", [
             'driver' => $sqlite['driver'],
             'url' => $sqlite['url'],
             'database' => $sqlite['database'] . "$team_id.sqlite",
@@ -144,7 +144,7 @@ class Base extends Model
                 continue;
             }
             DB::connection('phmoney_portfolio')->table($table_name)->where('team_id', $team_id)->delete();
-            DB::connection('sqlite')->table($table_name)->orderBy('guid')->chunk(200, function ($values) use ($table_name, $team_id) {
+            DB::connection('phmoney_sqlite')->table($table_name)->orderBy('guid')->chunk(200, function ($values) use ($table_name, $team_id) {
                 $inserts = [];
                 foreach ($values as $value) {
                     $insert = json_decode(json_encode($value), true);
@@ -173,10 +173,10 @@ class Base extends Model
                 continue;
             }
             $table_name = str_replace($prefix, '', $table->$tables_in);
-            if ($table_name === 'migrations') {
+            if ($table_name === 'migrations' || $table_name === 'settings') {
                 continue;
             }
-            DB::connection('sqlite')->table($table_name)->delete();
+            DB::connection('phmoney_sqlite')->table($table_name)->delete();
             DB::connection('phmoney_portfolio')->table($table_name)->where('team_id', $team_id)->orderBy('pk')->chunk(200, function ($values) use ($table_name) {
                 $inserts = [];
                 foreach ($values as $value) {
@@ -185,7 +185,7 @@ class Base extends Model
                     unset($insert['team_id']);
                     $inserts[] = $insert;
                 }
-                DB::connection('sqlite')->table($table_name)->insert($inserts);
+                DB::connection('phmoney_sqlite')->table($table_name)->insert($inserts);
             });
         }
     }

@@ -211,6 +211,7 @@ class Account extends Base
                     'placeholder' => $book->root_account->placeholder,
                     'level' => $level,
                     'commodity' => [
+                        'guid' => $book->root_account->commodity->guid,
                         'fraction' => $book->root_account->commodity->fraction,
                         'mnemonic' => $book->root_account->commodity->mnemonic,
                         'namespace' => $book->root_account->commodity->namespace,
@@ -250,6 +251,7 @@ class Account extends Base
                 'placeholder' => $child->placeholder,
                 'level' => $level,
                 'commodity' => [
+                    'guid' => $child->commodity->guid,
                     'fraction' => $child->commodity->fraction,
                     'mnemonic' => $child->commodity->mnemonic,
                     'namespace' => $child->commodity->namespace,

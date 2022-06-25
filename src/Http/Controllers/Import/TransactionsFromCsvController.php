@@ -38,7 +38,9 @@ class TransactionsFromCsvController extends Controller
      */
     public function page2()
     {
-        return Jetstream::inertia()->render(request(), 'Import/TransactionsFromCsv/Page2', []);
+        return Jetstream::inertia()->render(request(), 'Import/TransactionsFromCsv/Page2', [
+           'import_settings' =>  Setting::where(['type' => 'import_transactions_csv'])->get()
+        ]);
     }
 
     /**
@@ -179,7 +181,6 @@ class TransactionsFromCsvController extends Controller
         $validated['selected_columns'] = $selected_columns->toArray();
 
         $validated['accounts'] = Account::getFlatList();
-        $validated['import_settings'] = Setting::where(['type' => 'import_transactions_csv'])->get();
 
         Session::put('import_transactions_csv', $validated);
 
@@ -209,7 +210,7 @@ class TransactionsFromCsvController extends Controller
         foreach ($items as $item) {
             $transaction = [
                     'guid' => Base::uuid(),
-                    'currency_guid' => $item['source_account']['currency_guid']
+                    'currency_guid' => $item['source_account']['commodity']['guid']
                 ];
 
             $date_key = $selected_columns->search('Date');
@@ -235,7 +236,7 @@ class TransactionsFromCsvController extends Controller
                 $amount = str_replace('.', '', $amount);
                 $amount = str_replace(',', '.', $amount);
             }
-            $amount = round($amount * $item['source_account']['commodity_scu']);
+            $amount = round($amount * $item['source_account']['commodity']['fraction']);
             $shares_key = $selected_columns->search('Shares');
             if ($shares_key !== false) {
                 $shares = $item['value'][$shares_key];
@@ -243,7 +244,7 @@ class TransactionsFromCsvController extends Controller
                     $shares = str_replace('.', '', $shares);
                     $shares = str_replace(',', '.', $shares);
                 }
-                $shares = round($shares * $item['source_account']['commodity_scu']);
+                $shares = round($shares * $item['source_account']['commodity']['fraction']);
             } else {
                 $shares = $amount;
             }
@@ -257,9 +258,9 @@ class TransactionsFromCsvController extends Controller
                 'reconcile_state' => 'c',
                 'reconcile_date' => $transaction['post_date'],
                 'value_num' => -$amount,
-                'value_denom' => $item['source_account']['commodity_scu'],
+                'value_denom' => $item['source_account']['commodity']['fraction'],
                 'quantity_num' => -$shares,
-                'quantity_denom' => $item['source_account']['commodity_scu'],
+                'quantity_denom' => $item['source_account']['commodity']['fraction'],
             ];
             $splits[] = [
                 'guid' => Base::uuid(),
@@ -270,9 +271,9 @@ class TransactionsFromCsvController extends Controller
                 'reconcile_state' => 'c',
                 'reconcile_date' => $transaction['post_date'],
                 'value_num' => $amount,
-                'value_denom' => $item['destination_account']['commodity_scu'],
+                'value_denom' => $item['destination_account']['commodity']['fraction'],
                 'quantity_num' => $shares,
-                'quantity_denom' => $item['destination_account']['commodity_scu'],
+                'quantity_denom' => $item['destination_account']['commodity']['fraction'],
             ];
 
         }
