@@ -191,6 +191,8 @@ Route::group(['prefix' => 'phmoney', 'middleware' => 'web'], function () {
             Route::put('/options/store', [\Kainotomo\PHMoney\Http\Controllers\Teams\OptionsController::class, 'store'])->name('phmoney.teams.options.store');
             Route::get('/database/download', [\Kainotomo\PHMoney\Http\Controllers\Teams\OptionsController::class, 'download'])->name('phmoney.teams.database.download');
             Route::post('/database/upload', [\Kainotomo\PHMoney\Http\Controllers\Teams\OptionsController::class, 'upload'])->name('phmoney.teams.database.upload');
+            Route::get('/samples', [\Kainotomo\PHMoney\Http\Controllers\Teams\OptionsController::class, 'samples'])->name('phmoney.teams.samples.index');
+            Route::post('/samples/load', [\Kainotomo\PHMoney\Http\Controllers\Teams\OptionsController::class, 'loadSample'])->name('phmoney.teams.samples.load');
         });
     });
 });

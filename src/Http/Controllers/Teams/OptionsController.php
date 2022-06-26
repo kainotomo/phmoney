@@ -12,7 +12,9 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Kainotomo\PHMoney\Http\Requests\Teams\DatabaseUploadRequest;
+use Kainotomo\PHMoney\Http\Requests\Teams\LoadSampleRequest;
 use Kainotomo\PHMoney\Http\Requests\Teams\OptionsRequest;
 use Kainotomo\PHMoney\Models\Setting;
 
@@ -312,5 +314,37 @@ class OptionsController extends Controller
         return $request->wantsJson()
             ? new JsonResponse('', 200)
             : back()->with('status', 'sqlite-file-uploaded');
+    }
+
+    /**
+     * Get all templates
+     * @param \App\Models\Team $team
+     * @return \Illuminate\Http\Response|\Illuminate\Contracts\Routing\ResponseFactory
+     */
+    public function samples(Team $team)
+    {
+        return response(['samples' => Storage::allFiles('samples')]);
+    }
+
+    /**
+     * Load sample
+     *
+     * @param  \Kainotomo\PHMoney\Http\Requests\LoadSampleRequest  $request
+     * @param \App\Models\Team $team
+     * @return \Illuminate\Http\Response
+     */
+    public function loadSample(LoadSampleRequest $request, Team $team)
+    {
+        $from = $request->validated('sample');
+        $to = "import/sqlite/$team->id.sqlite";
+        if (!Storage::copy($from, $to)) {
+            return response('Failed to load sample', 404);
+        }
+
+        Base::sqlite2mariadb($team->id);
+
+        return $request->wantsJson()
+            ? new JsonResponse('', 200)
+            : back()->with('status', 'sample-file-loaded');
     }
 }
