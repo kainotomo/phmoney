@@ -51,6 +51,13 @@ Route::group(['prefix' => 'phmoney', 'middleware' => 'web'], function () {
         });
     });
 
+    Route::prefix('/export')->group(function () {
+        Route::prefix('/transactions-to-csv')->group(function () {
+            Route::get('/index', [\Kainotomo\PHMoney\Http\Controllers\Export\TransactionsToCsvController::class, 'index'])->name('phmoney.import.transactions-from-csv.index');
+            Route::post('/download', [\Kainotomo\PHMoney\Http\Controllers\Export\TransactionsToCsvController::class, 'download'])->name('phmoney.import.transactions-from-csv.download');
+        });
+    });
+
     Route::prefix('/reports')->group(function () {
         Route::get('/', [\Kainotomo\PHMoney\Http\Controllers\ReportController::class, 'index'])->name('phmoney.reports');
         Route::get('/transactions', [\Kainotomo\PHMoney\Http\Controllers\ReportController::class, 'transactions'])->name('phmoney.reports.transactions');
