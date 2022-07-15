@@ -29,9 +29,9 @@ class IncomeExpenseController extends ReportController
 
         $accounts = Account::getFlatList(false, true);
         if ($request->accounts) {
-            $account_guids = explode(',', $request->accounts);
-            $selected_accounts = $accounts->whereIn('guid', $account_guids);
-            $other_accounts = $accounts->whereNotIn('guid', $account_guids);
+            $pks = explode(',', $request->accounts);
+            $selected_accounts = $accounts->whereIn('pk', $pks);
+            $other_accounts = $accounts->whereNotIn('pk', $pks);
         } else {
             $selected_accounts = $accounts->whereIn('type', Account::ASSETS);
             $other_accounts = $accounts->whereNotIn('type', Account::ASSETS);
@@ -389,7 +389,7 @@ class IncomeExpenseController extends ReportController
         $items = collect($accounts->all());
 
         if ($request->accounts) {
-            $items = $items->whereIn('guid', explode(",", $request->accounts));
+            $items = $items->whereIn('pk', explode(",", $request->accounts));
         }
 
         $incomes_items = $items->whereIn('type', Account::INCOMES);
@@ -458,7 +458,7 @@ class IncomeExpenseController extends ReportController
         $items = collect($accounts->all());
 
         if ($request->accounts) {
-            $items = $items->whereIn('guid', explode(",", $request->accounts));
+            $items = $items->whereIn('pk', explode(",", $request->accounts));
         }
 
         $items = $items->transform(function ($item, $key) {

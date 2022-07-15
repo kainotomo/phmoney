@@ -100,7 +100,7 @@ class ReportController extends Controller
                     ->leftJoin('accounts', 'accounts.guid', '=', 'splits.account_guid')
                     ->leftJoin('transactions', 'transactions.guid', '=', 'splits.tx_guid');
                 if ($request->accounts) {
-                    $query->whereIn('accounts.guid', explode(",", $request->accounts));
+                    $query->whereIn('accounts.pk', explode(",", $request->accounts));
                 } else {
                     $query->whereIn('accounts.account_type', $default_account['accounts']);
                 }
@@ -158,7 +158,7 @@ class ReportController extends Controller
         $rows = collect($accounts->all());
 
         if ($request->accounts) {
-            $rows = $rows->whereIn('guid', explode(",", $request->accounts));
+            $rows = $rows->whereIn('pk', explode(",", $request->accounts));
         }
 
         $assets_rows = $rows->whereIn('type', $default_accounts);
@@ -210,7 +210,7 @@ class ReportController extends Controller
                 'commodities.mnemonic',
                 'commodities.fraction',
             )
-            ->whereIn('splits.account_guid', explode(",", $request->accounts))
+            ->whereIn('accounts.pk', explode(",", $request->accounts))
             ->where('splits.team_id', $request->user()->currentTeam->id)
             ->where('accounts.team_id', $request->user()->currentTeam->id)
             ->where('transactions.team_id', $request->user()->currentTeam->id)

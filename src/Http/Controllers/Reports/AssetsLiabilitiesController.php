@@ -4,7 +4,6 @@ namespace Kainotomo\PHMoney\Http\Controllers\Reports;
 
 use Kainotomo\PHMoney\Http\Controllers\ReportController;
 use Kainotomo\PHMoney\Models\Account;
-use Kainotomo\PHMoney\Models\Base;
 use Kainotomo\PHMoney\Models\Commodity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -50,7 +49,7 @@ class AssetsLiabilitiesController extends ReportController
         $items = collect($accounts->all());
 
         if ($request->accounts) {
-            $items = $items->whereIn('guid', explode(",", $request->accounts));
+            $items = $items->whereIn('pk', explode(",", $request->accounts));
         }
 
         $assets_items = $items->whereIn('type', Account::ASSETS);
@@ -286,10 +285,10 @@ class AssetsLiabilitiesController extends ReportController
 
         $items = [];
         if ($request->accounts) {
-            $account_guids = explode(',', $request->accounts);
-            foreach ($account_guids as $account_guid) {
+            $pks = explode(',', $request->accounts);
+            foreach ($pks as $pk) {
                 $item = [];
-                $account = Account::where('guid', $account_guid)->first();
+                $account = Account::where('pk', $pk)->first();
                 $splits = $account->splits()->select(
                     'tx_guid',
                     DB::raw('1.0*value_num/value_denom as amount')
