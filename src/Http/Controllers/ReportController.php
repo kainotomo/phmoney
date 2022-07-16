@@ -33,7 +33,8 @@ class ReportController extends Controller
      * @param Carbon $date
      * @return Carbon
      */
-    protected function increaseDate(Request $request, Carbon $date) {
+    protected function increaseDate(Request $request, Carbon $date)
+    {
         $result = new Carbon($date->toDateTimeString());
         switch ($request->step_size) {
             case 'One Day':
@@ -200,6 +201,7 @@ class ReportController extends Controller
             ->select(
                 'accounts.guid',
                 'accounts.name',
+                'accounts.code',
                 'splits.guid as split_guid',
                 'splits.memo',
                 DB::raw('phmprt_splits.value_num/phmprt_splits.value_denom as amount'),
@@ -222,21 +224,48 @@ class ReportController extends Controller
             ->leftJoin('commodities', 'commodities.guid', '=', 'accounts.commodity_guid')
             ->get();
 
+        if ($request->export_csv === "true") {
+            $rows = $rows->transform(function ($row, $key) {
+                return collect([
+                    'name' => $row->name,
+                    'code' => $row->code,
+                    'num' => $row->num,
+                    'description' => $row->description,
+                    'memo' => $row->memo,
+                    'mnemonic' => $row->mnemonic,
+                    'amount' => $row->amount,
+                ]);
+            });
+
+            return response()->streamDownload(function () use ($rows) {
+                echo $rows->toInlineCsv([
+                    'name',
+                    'code',
+                    'num',
+                    'description',
+                    'memo',
+                    'mnemonic',
+                    'amount'
+                ]);
+            }, __FUNCTION__ . '.csv');
+        }
+
         $rows = $rows->groupBy('guid');
 
-        foreach ($rows as $key => $value) {
-            $rows[$key] = collect([
+        $rows = $rows->transform(function ($row, $key) {
+            return collect([
                 'guid' => $key,
-                'name' => $value[0]->name,
-                'rows' => $value,
-                'total' => $value->sum('amount'),
+                'name' => $row[0]->name,
+                'code' => $row[0]->code,
+                'rows' => $row,
+                'total' => $row->sum('amount'),
                 'commodity' => [
-                    'namespace' => $value[0]->namespace,
-                    'mnemonic' => $value[0]->mnemonic,
-                    'fraction' => $value[0]->fraction,
+                    'namespace' => $row[0]->namespace,
+                    'mnemonic' => $row[0]->mnemonic,
+                    'fraction' => $row[0]->fraction,
                 ],
             ]);
-        }
+        });
 
         return Jetstream::inertia()->render(request(), 'Reports/Transactions', [
             'print' => $request->print == 'true' ? true :  false,

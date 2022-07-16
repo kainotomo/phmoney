@@ -478,8 +478,7 @@ class IncomeExpenseController extends ReportController
         if ($request->export_csv === "true") {
             return response()->streamDownload(function () use ($items) {
                 echo $items->toInlineCsv(['name', 'code', 'debit', 'credit']);
-            }, 'TrialBalance.csv');
-            return response()->streamDownload($items->toInlineCsv(['name', 'code', 'debit', 'credit']));
+            }, __FUNCTION__ . '.csv');
         }
 
         return Jetstream::inertia()->render(request(), 'Reports/IncomeExpense/TrialBalance', [
