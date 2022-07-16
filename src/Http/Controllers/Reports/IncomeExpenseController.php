@@ -481,6 +481,12 @@ class IncomeExpenseController extends ReportController
             }, __FUNCTION__ . '.csv');
         }
 
+        if ($request->export_json === "true") {
+            return response()->streamDownload(function () use ($items) {
+                echo json_encode($items);
+            }, __FUNCTION__ . '.json');
+        }
+
         return Jetstream::inertia()->render(request(), 'Reports/IncomeExpense/TrialBalance', [
             'print' => $request->print == 'true' ? true :  false,
             'currencies' => Commodity::where('namespace', Commodity::CURRENCY)->get(),

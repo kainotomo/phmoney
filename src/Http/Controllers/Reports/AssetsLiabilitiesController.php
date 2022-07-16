@@ -394,6 +394,12 @@ class AssetsLiabilitiesController extends ReportController
                 $item['total'] = $balance;
                 $items[] = $item;
             }
+
+            if ($request->export_json === "true") {
+                return response()->streamDownload(function () use ($items) {
+                    echo json_encode($items);
+                }, __FUNCTION__ . '.json');
+            }
         }
 
         return Jetstream::inertia()->render(request(), 'Reports/AssetsLiabilities/GeneralLedger', [

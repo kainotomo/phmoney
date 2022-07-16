@@ -267,6 +267,12 @@ class ReportController extends Controller
             ]);
         });
 
+        if ($request->export_json === "true") {
+            return response()->streamDownload(function () use ($rows) {
+                echo json_encode($rows);
+            }, __FUNCTION__ . '.json');
+        }
+
         return Jetstream::inertia()->render(request(), 'Reports/Transactions', [
             'print' => $request->print == 'true' ? true :  false,
             'currencies' => Commodity::where('namespace', Commodity::CURRENCY)->get(),
