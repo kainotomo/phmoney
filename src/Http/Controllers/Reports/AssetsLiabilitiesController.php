@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use App\Providers\Jetstream\Jetstream;
 use Kainotomo\PHMoney\Models\Setting;
+use Kainotomo\PHMoney\Models\Split;
 
 class AssetsLiabilitiesController extends ReportController
 {
@@ -285,6 +286,57 @@ class AssetsLiabilitiesController extends ReportController
 
         $items = [];
         if ($request->accounts) {
+
+            if ($request->export_csv === "true") {
+
+                $rows = DB::connection('phmoney_portfolio')->table('splits')
+                    ->select(
+                        'accounts.name',
+                        'accounts.code',
+                        DB::raw('1.0*phmprt_splits.value_num/phmprt_splits.value_denom as amount'),
+                        'transactions.post_date',
+                        'commodities.mnemonic',
+                        'transactions.description',
+                        'transactions.num',
+                        'splits.memo',
+                    )
+                    ->where('transactions.post_date', '>=', $date_start)
+                    ->where('transactions.post_date', '<=', $date_end)
+                    ->where('splits.team_id', $request->user()->currentTeam->id)
+                    ->where('accounts.team_id', $request->user()->currentTeam->id)
+                    ->where('transactions.team_id', $request->user()->currentTeam->id)
+                    ->where('commodities.team_id', $request->user()->currentTeam->id)
+                    ->leftJoin('accounts', 'accounts.guid', '=', 'splits.account_guid')
+                    ->leftJoin('transactions', 'transactions.guid', '=', 'splits.tx_guid')
+                    ->leftJoin('commodities', 'commodities.guid', '=', 'accounts.commodity_guid')
+                    ->orderBy('transactions.post_date')
+                    ->get();
+
+                $rows = $rows->transform(function ($row, $key) {
+                    return collect([
+                        'name' => $row->name,
+                        'code' => $row->code,
+                        'num' => $row->num,
+                        'description' => $row->description,
+                        'memo' => $row->memo,
+                        'mnemonic' => $row->mnemonic,
+                        'amount' => $row->amount,
+                    ]);
+                });
+
+                return response()->streamDownload(function () use ($rows) {
+                    echo $rows->toInlineCsv([
+                        'name',
+                        'code',
+                        'num',
+                        'description',
+                        'memo',
+                        'mnemonic',
+                        'amount'
+                    ]);
+                }, __FUNCTION__ . '.csv');
+            }
+
             $pks = explode(',', $request->accounts);
             foreach ($pks as $pk) {
                 $item = [];
