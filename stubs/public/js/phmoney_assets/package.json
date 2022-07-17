@@ -1,6 +1,53 @@
 {
-    "private": true,
-    "devDependencies": {
-        "@kainotomo/phmoney_assets": "^0.0.17"
-    }
+  "name": "@kainotomo/phmoney_assets",
+  "version": "0.1.2",
+  "description": "PHMoney vue assets",
+  "main": "main.ts",
+  "scripts": {
+    "watch": "vite build --watch --mode=watch",
+    "dev": "vite build --mode=development",
+    "build": "vite build",
+    "preview": "vite preview --port 5050",
+    "test": "exit 0"
+  },
+  "dependencies": {
+    "evaluator.js": "^3.2.4",
+    "vue": "^3.2.33",
+    "vue-router": "^4.0.14"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.0",
+    "@tailwindcss/typography": "^0.5.2",
+    "@types/node": "^16.11.27",
+    "@vitejs/plugin-vue": "^2.3.1",
+    "@vue/tsconfig": "^0.1.3",
+    "autoprefixer": "^10.4.4",
+    "postcss": "^8.4.12",
+    "tailwindcss": "^3.0.24",
+    "typescript": "~4.6.3",
+    "vite": "^2.9.5",
+    "vue-tsc": "^0.34.7",
+    "axios": "^0.26.1",
+    "moment": "^2.29.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kainotomo/phmoney_assets.git"
+  },
+  "keywords": [
+    "laravel",
+    "online",
+    "accounting",
+    "software",
+    "invoice"
+  ],
+  "author": "KAINOTOMO PH LTD",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/kainotomo/phmoney_assets/issues"
+  },
+  "homepage": "https://github.com/kainotomo/phmoney_assets#readme",
+  "publishConfig": {
+    "@kainotomo:registry": "https://registry.npmjs.org/"
+  }
 }
