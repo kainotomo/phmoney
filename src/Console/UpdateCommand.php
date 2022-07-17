@@ -34,7 +34,7 @@ class UpdateCommand extends Command
     {
         $filesystem = new Filesystem;
         $filesystem->deleteDirectory(public_path('js/phmoney_assets'));
-        $filesystem->copyDirectory(__DIR__.'/../../stubs/public/js/phmoney_assets', public_path('js/phmoney_assets'));
+        $filesystem->copyDirectory(__DIR__.'/../../stubs/public/js/phmoney_assets/dist', public_path('js/phmoney_assets'));
 
         $this->line('');
         $this->info('PHMoney updated successfully.');
