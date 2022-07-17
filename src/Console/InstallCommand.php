@@ -32,7 +32,7 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        $this->setConfigDatabase();
+        //$this->setConfigDatabase();
         copy(__DIR__.'/../../stubs/resources/views/phmoney.blade.php', resource_path('views/phmoney.blade.php'));
 
         $this->line('');
