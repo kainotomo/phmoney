@@ -44,6 +44,7 @@
     "config": {
         "sort-packages": true
     },
+    "minimun-stability": "dev",
     "prefer-stable": true,
     "scripts": {
         "post-install-cmd": [
