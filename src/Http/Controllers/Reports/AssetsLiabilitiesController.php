@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use App\Providers\Jetstream\Jetstream;
+use Illuminate\Support\Facades\Date;
 use Kainotomo\PHMoney\Models\Setting;
 use Kainotomo\PHMoney\Models\Split;
 
@@ -314,6 +315,7 @@ class AssetsLiabilitiesController extends ReportController
 
                 $rows = $rows->transform(function ($row, $key) {
                     return collect([
+                        'post_date' => (Date::createFromTimeString($row->post_date))->toDateString(),
                         'name' => $row->name,
                         'code' => $row->code,
                         'num' => $row->num,
@@ -326,6 +328,7 @@ class AssetsLiabilitiesController extends ReportController
 
                 return response()->streamDownload(function () use ($rows) {
                     echo $rows->toInlineCsv([
+                        'post_date',
                         'name',
                         'code',
                         'num',

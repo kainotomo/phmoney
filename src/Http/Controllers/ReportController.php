@@ -10,6 +10,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use App\Providers\Jetstream\Jetstream;
+use Illuminate\Support\Facades\Date;
 use Kainotomo\PHMoney\Models\Setting;
 
 class ReportController extends Controller
@@ -222,11 +223,13 @@ class ReportController extends Controller
             ->leftJoin('accounts', 'accounts.guid', '=', 'splits.account_guid')
             ->leftJoin('transactions', 'transactions.guid', '=', 'splits.tx_guid')
             ->leftJoin('commodities', 'commodities.guid', '=', 'accounts.commodity_guid')
+            ->orderBy('transactions.post_date')
             ->get();
 
         if ($request->export_csv === "true") {
             $rows = $rows->transform(function ($row, $key) {
                 return collect([
+                    'post_date' => (Date::createFromTimeString($row->post_date))->toDateString(),
                     'name' => $row->name,
                     'code' => $row->code,
                     'num' => $row->num,
@@ -239,6 +242,7 @@ class ReportController extends Controller
 
             return response()->streamDownload(function () use ($rows) {
                 echo $rows->toInlineCsv([
+                    'post_date',
                     'name',
                     'code',
                     'num',
