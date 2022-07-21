@@ -3,9 +3,9 @@
 namespace Kainotomo\PHMoney\Models;
 
 use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 
 class Split extends Base
@@ -44,37 +44,41 @@ class Split extends Base
     }
 
     /**
-     * Get all splits for an account with their balances
+     * Get all splits for an account with their balances.
+     * The key is the pk
      *
      * @param Account $account
-     * @return Illuminate\Database\Eloquent\Collection
+     * @param Request $request
+     * @return \Illuminate\Support\Collection 
      */
-    public static function getBalancesForAccount(Account $account)
+    public static function getBalancesForAccount(Account $account, Request $request)
     {
-        $splits = Split::select(
-            'guid',
-            'tx_guid',
-            DB::raw('1.0*value_num/value_denom as amount'),
-        )->with(['transaction' => function ($query) {
-            $query->select('guid', 'post_date');
-        }])
-            ->where(['account_guid' => $account->guid])
-            ->get();
-        $splits = $splits->sortBy(function ($split, $key) {
-            return $split->transaction->post_date;
-        })->values();
+        $splits = DB::connection('phmoney_portfolio')->table('splits')
+        ->select(
+            'splits.pk',
+            DB::raw('1.0*phmprt_splits.value_num/phmprt_splits.value_denom as amount'),
+        )
+        ->where('splits.team_id', $request->user()->currentTeam->id)
+        ->where('accounts.team_id', $request->user()->currentTeam->id)
+        ->where('accounts.pk', $account->pk)
+        ->where('transactions.team_id', $request->user()->currentTeam->id)
+        ->where('commodities.team_id', $request->user()->currentTeam->id)
+        ->leftJoin('accounts', 'accounts.guid', '=', 'splits.account_guid')
+        ->leftJoin('transactions', 'transactions.guid', '=', 'splits.tx_guid')
+        ->leftJoin('commodities', 'commodities.guid', '=', 'accounts.commodity_guid')
+        ->orderBy('transactions.post_date', 'asc')
+        ->orderBy('splits.pk', 'asc')
+        ->get();
 
         // calculate balance for all splits
         $balance = 0;
+        $balances = collect();
         foreach ($splits as $split) {
             $balance += $split->amount;
-            $split->balance = $balance;
+            $balances[$split->pk] = round($balance, 2);
         }
 
-        $splits = $splits->transform(function ($item, $key) {
-            return collect(['guid' => $item->guid, 'balance' => $item->balance]);
-        });
-        return $splits;
+        return $balances;
     }
 
     /**
@@ -90,119 +94,68 @@ class Split extends Base
             $balances = Cache::get('balances:' . $account->guid, null);
             if (is_null($balances)) {
                 Cache::forget('balances:' . $account->guid);
-                $balances = Split::getBalancesForAccount($account);
+                $balances = Split::getBalancesForAccount($account, $request);
                 Cache::forever('balances:' . $account->guid, $balances);
             }
         } else {
             Cache::forget('balances:' . $account->guid);
-            $balances = Split::getBalancesForAccount($account);
+            $balances = Split::getBalancesForAccount($account, $request);
             Cache::forever('balances:' . $account->guid, $balances);
         }
-        $limit = $request->limit ?? 15;
-        $page = $request->page ?? 1;
-        $total = $balances->count();
-        $balances = $balances->slice(($page - 1) * $limit, $limit);
-        $guids = $balances->pluck('guid');
 
-        $query = Split::select(
-            '*',
-            DB::raw('1.0*value_num/value_denom as amount'),
-            DB::raw('1.0*quantity_num/quantity_denom as shares'),
-            DB::raw('(1.0*value_num/value_denom)/(quantity_num/quantity_denom) as price')
+        $query = DB::connection('phmoney_portfolio')->table('splits')
+        ->select(
+            'accounts.name',
+            'accounts.code',
+            DB::raw('1.0*phmprt_splits.value_num/phmprt_splits.value_denom as amount'),
+            'transactions.pk as pk',
+            'transactions.post_date',
+            'commodities.mnemonic',
+            'transactions.description',
+            'transactions.num',
+            'splits.pk as split_pk',
+            'splits.memo',
+            'splits.reconcile_state'
         )
-            ->with(['account', 'transaction', 'transaction.splits' => function ($query) use ($account) {
-                $query->select(
-                    '*',
-                    DB::raw('1.0*value_num/value_denom as amount'),
-                    DB::raw('1.0*quantity_num/quantity_denom as shares'),
-                    DB::raw('(1.0*value_num/value_denom)/(quantity_num/quantity_denom) as price')
-                )->where('account_guid', '<>', $account->guid);
-            }, 'transaction.splits.account', 'transaction.commodity'])
-            ->whereIn('guid', $guids);
+        ->where('splits.team_id', $request->user()->currentTeam->id)
+        ->where('accounts.team_id', $request->user()->currentTeam->id)
+        ->where('accounts.pk', $account->pk)
+        ->where('transactions.team_id', $request->user()->currentTeam->id)
+        ->where('commodities.team_id', $request->user()->currentTeam->id)
+        ->leftJoin('accounts', 'accounts.guid', '=', 'splits.account_guid')
+        ->leftJoin('transactions', 'transactions.guid', '=', 'splits.tx_guid')
+        ->leftJoin('commodities', 'commodities.guid', '=', 'accounts.commodity_guid')
+        ->orderBy('transactions.post_date', 'desc')
+        ->orderBy('splits.pk', 'desc');
+
         if ($request->memo) {
-            $query->where('memo', 'LIKE', '%' . $request->memo . '%');
+            $query->where('splits.memo', 'LIKE', '%' . $request->memo . '%');
         }
         if ($request->description) {
-            $query->where(function ($query) use ($request) {
-                $query->whereHas('transaction', function ($query) use ($request) {
-                    $query->where('description', 'LIKE', '%' . $request->description . '%');
-                });
-            });
+            $query->where('transactions.description', 'LIKE', '%' . $request->description . '%');
         }
         if ($request->num) {
-            $query->where(function ($query) use ($request) {
-                $query->whereHas('transaction', function ($query) use ($request) {
-                    $query->where('num', 'LIKE', '%' . $request->num . '%');
-                });
-            });
+            $query->where('transactions.num', 'LIKE', '%' . $request->num . '%');
         }
         if ($request->date_start) {
-            $query->where(function ($query) use ($request) {
-                $query->whereHas('transaction', function ($query) use ($request) {
-                    $date_start = (new Carbon($request->date_start))->startOfDay();
-                    $query->where('post_date', '>=', $date_start);
-                });
-            });
+            $date_start = (new Carbon($request->date_start))->startOfDay();
+            $query->where('transactions.post_date', '>=', $date_start);
         }
         if ($request->date_end) {
-            $query->where(function ($query) use ($request) {
-                $query->whereHas('transaction', function ($query) use ($request) {
-                    $date_end = (new Carbon($request->date_end))->endOfDay();
-                    $query->where('post_date', '<=', $date_end);
-                });
-            });
-        }
-        $splits = $query->get();
-        $splits = $splits->sortBy(function ($split, $key) {
-            return $split->transaction->post_date;
-        })->values();
-
-        // calculate balance for all splits
-        foreach ($splits as $key => $split) {
-            $split->error_message = null;
-            $split->precision = strlen(strval($split->value_denom)) - 1;
-            $split->precision_shares = strlen(strval($split->quantity_denom)) - 1;
-
-            $split->debit = null;
-            if ($split->amount > 0) {
-                $split->debit = (float) $split->amount;
-            }
-
-            $split->credit = null;
-            if ($split->amount < 0) {
-                $split->credit = abs($split->amount);
-            }
-
-            $balance = $balances->firstWhere('guid', $split->guid);
-            $balance = $balance ? $balance['balance'] : null;
-            $split->balance = $balance;
-
-            foreach ($split->transaction->splits as $split_child) {
-                $precision = strlen(strval($split_child->value_denom)) - 1;
-                $split_child->precision = $precision;
-                $split_child->error_message = null;
-                $split_child->debit = null;
-                if ($split_child->value_num > 0) {
-                    $split_child->debit = round($split_child->value_num / $split_child->value_denom, $precision);
-                }
-
-                $split_child->credit = null;
-                if ($split_child->value_num < 0) {
-                    $split_child->credit = abs(round($split_child->value_num / $split_child->value_denom, $precision));
-                }
-
-                $split_child->precision_shares = strlen(strval($split_child->quantity_denom)) - 1;
-                $split_child->shares = round($split_child->quantity_num / $split_child->quantity_denom, $split_child->precision_shares);
-                $split_child->shares = $split_child->shares == 0 ? null : $split_child->shares;
-                try {
-                    $split_child->price = ($split_child->value_num / $split_child->value_denom) / ($split_child->quantity_num / $split_child->quantity_denom);
-                } catch (\Throwable $th) {
-                    $split_child->price = null;
-                }
-            }
+            $date_end = (new Carbon($request->date_end))->endOfDay();
+            $query->where('transactions.post_date', '<=', $date_end);
         }
 
-        return new LengthAwarePaginator($splits, $total, $limit, $page);
+        $splits = $query->paginate();
+
+        foreach ($splits as $split) {
+            $split->post_date = (Date::createFromTimeString($split->post_date))->toDateString();
+            $split->debit = $split->amount > 0 ? (float) $split->amount : null;
+            $split->credit = $split->amount < 0 ? (float) -$split->amount : null;
+            $split->balance = $balances[$split->split_pk];
+        }
+
+        return $splits;
     }
 
     /**
