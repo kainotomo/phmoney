@@ -29,6 +29,7 @@ Route::group(['prefix' => 'phmoney', 'middleware' => 'web'], function () {
         Route::get('/', [\Kainotomo\PHMoney\Http\Controllers\TransactionsController::class, 'index'])->name('phmoney.transactions');
         Route::get('/create', [\Kainotomo\PHMoney\Http\Controllers\TransactionsController::class, 'create'])->name('phmoney.transactions.create');
         Route::post('/store', [\Kainotomo\PHMoney\Http\Controllers\TransactionsController::class, 'store'])->name('phmoney.transactions.store');
+        Route::get('/view/{transaction}', [\Kainotomo\PHMoney\Http\Controllers\TransactionsController::class, 'view'])->name('phmoney.transactions.view');
         Route::get('/edit/{transaction}', [\Kainotomo\PHMoney\Http\Controllers\TransactionsController::class, 'edit'])->name('phmoney.transactions.edit');
         Route::get('/duplicate/{transaction}', [\Kainotomo\PHMoney\Http\Controllers\TransactionsController::class, 'duplicate'])->name('phmoney.transactions.duplicate');
         Route::post('/update/{transaction}', [\Kainotomo\PHMoney\Http\Controllers\TransactionsController::class, 'update'])->name('phmoney.transactions.update');

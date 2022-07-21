@@ -182,6 +182,22 @@ class TransactionsController extends Controller
      * @param \Kainotomo\PHMoney\Models\Transaction $transaction
      * @return \Inertia\Response
      */
+    public function view(Account $account, Transaction $transaction)
+    {
+        return Jetstream::inertia()->render(request(), 'Transactions/Edit', [
+            'account' => $account,
+            'transaction' => $transaction,
+            'splits' => Split::getForTransaction($transaction),
+        ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @param \Kainotomo\PHMoney\Models\Account $account
+     * @param \Kainotomo\PHMoney\Models\Transaction $transaction
+     * @return \Inertia\Response
+     */
     public function edit(Account $account, Transaction $transaction)
     {
 
