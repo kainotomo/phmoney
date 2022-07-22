@@ -61,6 +61,7 @@ Route::group(['prefix' => 'phmoney', 'middleware' => 'web'], function () {
 
     Route::prefix('/reports')->group(function () {
         Route::get('/', [\Kainotomo\PHMoney\Http\Controllers\ReportController::class, 'index'])->name('phmoney.reports');
+        Route::get('/account-summary', [\Kainotomo\PHMoney\Http\Controllers\ReportController::class, 'account_summary'])->name('phmoney.reports.account-summary');
         Route::get('/transactions', [\Kainotomo\PHMoney\Http\Controllers\ReportController::class, 'transactions'])->name('phmoney.reports.transactions');
         Route::prefix('/assets_liabilities')->group(function () {
             Route::get('/balance_sheet', [\Kainotomo\PHMoney\Http\Controllers\Reports\AssetsLiabilitiesController::class, 'balance_sheet'])->name('phmoney.reports.balance_liabilities.balance_sheet');

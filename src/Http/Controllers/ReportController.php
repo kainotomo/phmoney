@@ -292,4 +292,60 @@ class ReportController extends Controller
             'total' => $rows->sum('total'),
         ]);
     }
+
+    /**
+     * Display account summary reports.
+     *
+     * @author Panayiotis Halouvas <phalouvas@kainotomo.com>
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int $setting_id
+     * @return \Inertia\Response
+     */
+    public function account_summary(Request $request)
+    {
+        $date_start = $this->getStartDate($request);
+        $date_end = $this->getEndDate($request);
+
+        $amounts = DB::connection('phmoney_portfolio')->table('splits')
+            ->select(
+                'accounts.guid',
+                'accounts.name',
+                DB::raw('sum(1.0*phmprt_splits.value_num/phmprt_splits.value_denom) as amount'),
+                'transactions.post_date',
+                'commodities.mnemonic',
+                'commodities.fraction',
+            )
+            ->where('splits.team_id', $request->user()->currentTeam->id)
+            ->where('accounts.team_id', $request->user()->currentTeam->id)
+            ->where('transactions.team_id', $request->user()->currentTeam->id)
+            ->where('transactions.post_date', '>=', $date_start)
+            ->where('transactions.post_date', '<=', $date_end)
+            ->where('commodities.team_id', $request->user()->currentTeam->id)
+            ->leftJoin('accounts', 'accounts.guid', '=', 'splits.account_guid')
+            ->leftJoin('transactions', 'transactions.guid', '=', 'splits.tx_guid')
+            ->leftJoin('commodities', 'commodities.guid', '=', 'accounts.commodity_guid')
+            ->groupBy('splits.account_guid')
+            ->get();
+
+            $accounts = Account::getFlatList(false, true, null, null, 0, $date_start, $date_end, $amounts);
+
+            if ($request->accounts) {
+                $pks = explode(',', $request->accounts);
+                $accounts = $accounts->whereIn('pk', $pks);
+            }
+    
+        return Jetstream::inertia()->render(request(), 'Reports/Transactions', [
+            'print' => $request->print == 'true' ? true :  false,
+            'currencies' => Commodity::where('namespace', Commodity::CURRENCY)->get(),
+            'settings' => Setting::where('type', $request->decodedPath())->get(),
+            'type' => $request->decodedPath(),
+            'title' => $request->title ?? null,
+            'company' => $request->company ?? null,
+            'currency' => $request->currency ? json_decode($request->currency, true) : Commodity::where('namespace', Commodity::CURRENCY)->first(),
+            'date_start' => $date_start,
+            'date_end' => $date_end,
+            'accounts' => $accounts,
+        ]);
+    }
 }
