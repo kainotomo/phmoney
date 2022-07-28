@@ -242,9 +242,10 @@ class TransactionsController extends Controller
      *
      * @param \Kainotomo\PHMoney\Models\Account $account
      * @param \Kainotomo\PHMoney\Models\Transaction $transaction
+     * @param Illuminate\Http\Request $request
      * @return \Inertia\Response
      */
-    public function duplicate(Account $account, Transaction $transaction)
+    public function duplicate(Account $account, Transaction $transaction, Request $request)
     {
         $transaction_new = $transaction->replicate()->fill([
             'guid' => Base::uuid(),
@@ -259,7 +260,7 @@ class TransactionsController extends Controller
             $split_new->save();
         }
 
-        $splits = Split::getForAccount($account, new Request());
+        $splits = Split::getForAccount($account, $request);
 
         return Jetstream::inertia()->render(request(), 'Transactions/Index', [
             'account' => $account,

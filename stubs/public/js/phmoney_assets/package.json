@@ -1,6 +1,6 @@
 {
     "private": true,
     "devDependencies": {
-        "@kainotomo/phmoney_assets": "^0.1.5"
+        "@kainotomo/phmoney_assets": "^0.1.6"
     }
 }
