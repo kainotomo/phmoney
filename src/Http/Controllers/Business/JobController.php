@@ -137,7 +137,9 @@ class JobController extends Controller
             'numeric_val_denom' => $request->rate_denom,
             'gdate_val' => null
         ]);
-        return Redirect::route('business.jobs');
+        return $request->wantsJson()
+                    ? new JsonResponse('', 200)
+                    : back()->with('status', 'rate-created');
     }
 
     /**

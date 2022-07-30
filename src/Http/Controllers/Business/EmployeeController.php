@@ -112,7 +112,9 @@ class EmployeeController extends Controller
         }
 
         Employee::create($request->all());
-        return Redirect::route('business.employees');
+        return $request->wantsJson()
+                    ? new JsonResponse('', 200)
+                    : back()->with('status', 'employee-created');
     }
 
     /**

@@ -112,7 +112,9 @@ class VendorController extends Controller
         }
 
         Vendor::create($request->all());
-        return Redirect::route('business.vendors');
+        return $request->wantsJson()
+                    ? new JsonResponse('', 200)
+                    : back()->with('status', 'vendor-created');
     }
 
     /**

@@ -77,7 +77,9 @@ class CustomerController extends Controller
     public function store(CustomerRequest $request)
     {
         Customer::create($request->all());
-        return Redirect::route('business.customers');
+        return $request->wantsJson()
+                    ? new JsonResponse('', 200)
+                    : back()->with('status', 'customer-created');
     }
 
     /**

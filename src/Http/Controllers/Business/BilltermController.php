@@ -50,7 +50,9 @@ class BilltermController extends Controller
     public function store(BilltermRequest $request)
     {
         Billterm::create($request->all());
-        return Redirect::route('business.billterms');
+        return $request->wantsJson()
+                    ? new JsonResponse('', 200)
+                    : back()->with('status', 'billterm-created');
     }
 
     /**
