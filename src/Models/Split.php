@@ -95,12 +95,12 @@ class Split extends Base
             if (is_null($balances)) {
                 Cache::forget('balances:' . $account->guid);
                 $balances = Split::getBalancesForAccount($account, $request);
-                Cache::forever('balances:' . $account->guid, $balances);
+                Cache::put('balances:' . $account->guid, $balances, now()->addHour());
             }
         } else {
             Cache::forget('balances:' . $account->guid);
             $balances = Split::getBalancesForAccount($account, $request);
-            Cache::forever('balances:' . $account->guid, $balances);
+            Cache::forever('balances:' . $account->guid, $balances, now()->addHour());
         }
 
         $query = DB::connection('phmoney_portfolio')->table('splits')
